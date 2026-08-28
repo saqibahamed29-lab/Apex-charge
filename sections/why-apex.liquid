@@ -6,10 +6,6 @@
       <div style="margin-top: 20px;">
         {{ section.settings.body }}
       </div>
-      <div class="molecule-row">
-        {% render 'icon', name: 'flask' %}
-        {% render 'icon', name: 'leaf' %}
-      </div>
       <div class="why-apex__cta">
         <a href="{{ section.settings.cta_url | default: '#the-research' }}" class="btn btn--ghost">
           {{ section.settings.cta_label }}
@@ -18,17 +14,13 @@
       </div>
     </div>
 
-    <div data-animate style="transition-delay: 100ms;">
-      <div class="stat-row">
-        <div class="stat-card">
-          <div class="stat-card__value">{{ section.settings.stat_one_value }}</div>
-          <div class="stat-card__label">{{ section.settings.stat_one_label }}</div>
+    <div class="formula-grid" data-animate style="transition-delay: 100ms;">
+      {%- for block in section.blocks -%}
+        <div class="formula-item" {{ block.shopify_attributes }}>
+          <div class="formula-item__value">{{ block.settings.value }}</div>
+          <div class="formula-item__label">{{ block.settings.label }}</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-card__value">{{ section.settings.stat_two_value }}</div>
-          <div class="stat-card__label">{{ section.settings.stat_two_label }}</div>
-        </div>
-      </div>
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -51,30 +43,6 @@
     },
     {
       "type": "text",
-      "id": "stat_one_value",
-      "label": "Stat one value",
-      "default": "200mg"
-    },
-    {
-      "type": "text",
-      "id": "stat_one_label",
-      "label": "Stat one label",
-      "default": "Caffeine"
-    },
-    {
-      "type": "text",
-      "id": "stat_two_value",
-      "label": "Stat two value",
-      "default": "100mg"
-    },
-    {
-      "type": "text",
-      "id": "stat_two_label",
-      "label": "Stat two label",
-      "default": "L-Theanine"
-    },
-    {
-      "type": "text",
       "id": "cta_label",
       "label": "CTA label",
       "default": "See the Research"
@@ -85,6 +53,27 @@
       "label": "CTA link"
     }
   ],
-  "presets": [{ "name": "Why Apex" }]
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Formula item",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Amount", "info": "Only use amounts that are on the real supplement facts panel." },
+        { "type": "text", "id": "label", "label": "Label" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Apex",
+      "blocks": [
+        { "type": "ingredient", "settings": { "value": "200mg", "label": "Caffeine" } },
+        { "type": "ingredient", "settings": { "value": "100mg", "label": "L-Theanine" } },
+        { "type": "ingredient", "settings": { "value": "1000mg", "label": "Taurine" } },
+        { "type": "ingredient", "settings": { "value": "6", "label": "B Vitamins" } },
+        { "type": "ingredient", "settings": { "value": "3", "label": "Electrolytes" } }
+      ]
+    }
+  ]
 }
 {% endschema %}

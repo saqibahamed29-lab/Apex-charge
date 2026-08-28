@@ -20,12 +20,12 @@
     <link rel="icon" type="image/png" href="{{ 'apex-logo.png' | asset_url }}">
   {%- endif -%}
 
-  {%- # Brand typography (Space Grotesk / Public Sans / Fraunces) is loaded from Google
+  {%- # Brand typography (Anton / Space Grotesk / Public Sans) is loaded from Google
   Fonts rather than Shopify's font_picker so the exact brand pairing renders reliably. -%}
   {% # theme-check-disable RemoteAsset %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
   {% # theme-check-enable RemoteAsset %}
 
   {{ 'theme.css' | asset_url | stylesheet_tag }}

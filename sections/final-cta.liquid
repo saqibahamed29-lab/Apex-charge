@@ -1,7 +1,14 @@
 <section class="section section--dark final-cta">
-  <div class="wrap" data-animate>
+  <div class="wrap final-cta__inner" data-animate>
+    <div class="final-cta__visual">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', alt: '' }}
+      {%- else -%}
+        <img src="{{ 'apex-product-label.png' | asset_url }}" alt="" width="1810" height="869" loading="lazy">
+      {%- endif -%}
+    </div>
     <h2 class="h-display final-cta__title">{{ section.settings.heading }}</h2>
-    <a href="{{ section.settings.cta_url | default: '#purchase-apex' }}" class="btn btn--gold">{{ section.settings.cta_label }}</a>
+    <a href="{{ section.settings.cta_url | default: '#purchase-apex' }}" class="btn btn--lime">{{ section.settings.cta_label }}</a>
   </div>
 </section>
 
@@ -9,6 +16,12 @@
 {
   "name": "Final CTA",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product image",
+      "info": "Defaults to the label artwork. Replace with the real Shopify product image once available."
+    },
     {
       "type": "text",
       "id": "heading",

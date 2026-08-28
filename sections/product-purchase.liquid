@@ -6,6 +6,7 @@
 <section class="section section--navy" id="purchase-apex">
   <div class="wrap purchase">
     <div class="purchase__visual" data-animate>
+      <div class="purchase__visual-glow" aria-hidden="true"></div>
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Apex Energy Powder' }}
       {%- elsif product.featured_image -%}

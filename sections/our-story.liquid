@@ -1,25 +1,24 @@
-<section class="section section--paper" id="our-story">
-  <div class="wrap story-grid">
-    <div data-animate>
+<section class="story" id="our-story">
+  <div class="story__bg">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Apex Charge Labs founder' }}
+    {%- else -%}
+      <div class="story__bg-placeholder">Founder / lifestyle photo needed</div>
+    {%- endif -%}
+  </div>
+  <div class="story__scrim" aria-hidden="true"></div>
+
+  <div class="wrap" data-animate>
+    <div class="story__content">
       <span class="eyebrow">Our Story</span>
-      <h2 class="h-section" style="margin-bottom: 22px;">{{ section.settings.heading }}</h2>
-      <div class="story-copy lede" style="max-width: 56ch;">
+      <h2 class="h-section" style="margin-bottom: 18px;">{{ section.settings.heading }}</h2>
+      <div class="lede">
         {{ section.settings.body }}
       </div>
       {%- if section.settings.show_placeholder_note -%}
         <p class="story-signoff">&mdash; Final founder story and signature to be added.</p>
       {%- else -%}
         <p class="story-signoff">{{ section.settings.signoff }}</p>
-      {%- endif -%}
-    </div>
-
-    <div data-animate style="transition-delay: 100ms;">
-      {%- if section.settings.image != blank -%}
-        <div class="story-visual">
-          {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Apex Charge Labs founder' }}
-        </div>
-      {%- else -%}
-        <div class="story-visual story-visual--placeholder">Founder / story photo needed</div>
       {%- endif -%}
     </div>
   </div>

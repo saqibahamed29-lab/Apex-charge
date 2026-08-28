@@ -8,7 +8,7 @@
     <div class="try-grid" data-animate>
       {%- for block in section.blocks -%}
         <div {{ block.shopify_attributes }}>
-          <div class="try-card__icon">{% render 'icon', name: block.settings.icon %}</div>
+          <div class="icon-badge">{% render 'icon', name: block.settings.icon %}</div>
           <p class="try-card__title">{{ block.settings.title }}</p>
           <p class="try-card__desc">
             {{ block.settings.description }}

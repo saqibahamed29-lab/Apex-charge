@@ -1,7 +1,17 @@
 {
   "sections": {
     "hero": { "type": "hero" },
-    "why-apex": { "type": "why-apex" },
+    "why-apex": {
+      "type": "why-apex",
+      "blocks": {
+        "ingredient-1": { "type": "ingredient", "settings": { "value": "200mg", "label": "Caffeine" } },
+        "ingredient-2": { "type": "ingredient", "settings": { "value": "100mg", "label": "L-Theanine" } },
+        "ingredient-3": { "type": "ingredient", "settings": { "value": "1000mg", "label": "Taurine" } },
+        "ingredient-4": { "type": "ingredient", "settings": { "value": "6", "label": "B Vitamins" } },
+        "ingredient-5": { "type": "ingredient", "settings": { "value": "3", "label": "Electrolytes" } }
+      },
+      "block_order": ["ingredient-1", "ingredient-2", "ingredient-3", "ingredient-4", "ingredient-5"]
+    },
     "check-five-things": {
       "type": "check-five-things",
       "blocks": {
