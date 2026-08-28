@@ -1,0 +1,53 @@
+<section class="section section--white" id="faq">
+  <div class="wrap" style="max-width: 860px;">
+    <div style="margin-bottom: 36px;" data-animate>
+      <span class="eyebrow">Questions</span>
+      <h2 class="h-section">FAQ</h2>
+    </div>
+
+    <div class="faq-list" data-animate>
+      {%- for block in section.blocks -%}
+        <details class="faq-item" {{ block.shopify_attributes }}>
+          <summary class="faq-item__q">
+            {{ block.settings.question }}
+            <span class="faq-item__icon">{% render 'icon', name: 'plus' %}</span>
+          </summary>
+          <div class="faq-item__a"{% if block.settings.needs_input %} data-needs-input{% endif %}>{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" },
+        { "type": "checkbox", "id": "needs_input", "label": "Flag as needing input", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "question", "settings": { "question": "How much caffeine is in Apex?", "answer": "<p>Each serving (2 scoops) has 200mg of natural caffeine from green tea, paired with 100mg of L-theanine.</p>" } },
+        { "type": "question", "settings": { "question": "Does Apex have sugar or artificial sweeteners?", "answer": "<p>Apex has 0g of sugar per serving. It's sweetened with sucralose and colored naturally with red beet juice powder.</p>" } },
+        { "type": "question", "settings": { "question": "What flavor is Apex, and how do I mix it?", "answer": "<p>Apex comes in Strawberry Shortcake. Mix 1 scoop with 6&ndash;10 fl oz of water, or to taste &mdash; use 2 scoops with double the water. Do not exceed 5 scoops in a 24-hour period.</p>" } },
+        { "type": "question", "settings": { "question": "Is Apex gluten-free and vegan?", "answer": "<p>Yes. Apex is gluten-free, sugar-free, and vegan-friendly, per the product label.</p>" } },
+        { "type": "question", "settings": { "question": "What allergens should I know about?", "answer": "<p>Apex is manufactured in a facility that also processes milk, eggs, fish, shellfish, tree nuts, peanuts, wheat, soybeans, and sesame.</p>" } },
+        { "type": "question", "settings": { "question": "Is Apex safe for daily use?", "answer": "<p>The label recommends no more than 5 scoops within a 24-hour period. If you're pregnant, nursing, have a medical condition, or take medication, consult your physician before use.</p>" } },
+        { "type": "question", "settings": { "question": "When is the best time to take Apex?", "answer": "", "needs_input": true } },
+        { "type": "question", "settings": { "question": "What makes Apex different?", "answer": "<p>We built Apex around one formula, not a drink category &mdash; caffeine and L-theanine dosed with a reason, every ingredient named on the label, and no proprietary blends hiding the amounts.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

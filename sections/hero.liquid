@@ -1,0 +1,111 @@
+<section class="hero" id="top">
+  <div class="wrap hero__inner">
+    <div class="hero__content" data-animate>
+      <div class="hero__brand">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 200 | image_tag: loading: 'eager', alt: '' }}
+        {%- else -%}
+          <img src="{{ 'apex-logo.png' | asset_url }}" alt="" width="200" height="99" loading="eager">
+        {%- endif -%}
+        <span class="mono-tag">{{ section.settings.eyebrow }}</span>
+      </div>
+
+      <h1 class="h-display hero__title">
+        {{ section.settings.heading_line1 }}<br>
+        <em>{{ section.settings.heading_line2 }}</em>
+      </h1>
+
+      <p class="lede hero__lede">{{ section.settings.lede }}</p>
+
+      <div class="hero__ctas">
+        <a href="{{ section.settings.primary_cta_url | default: '#purchase-apex' }}" class="btn btn--gold">{{ section.settings.primary_cta_label }}</a>
+        <a href="{{ section.settings.secondary_cta_url | default: '#comparison' }}" class="btn btn--outline">
+          {{ section.settings.secondary_cta_label }}
+          {% render 'icon', name: 'chevron-right' %}
+        </a>
+      </div>
+
+      <div class="pill-row">
+        <span class="pill">{% render 'icon', name: 'flask' %}Transparent Formula</span>
+        <span class="pill">{% render 'icon', name: 'check-shield' %}Research-Linked</span>
+        <span class="pill">{% render 'icon', name: 'dose' %}Clearly Disclosed</span>
+      </div>
+    </div>
+
+    <div class="hero__visual" data-animate style="transition-delay: 120ms;">
+      <div class="hero__visual-frame">
+        <div class="hero__visual-glow" aria-hidden="true"></div>
+        {%- if section.settings.product_image != blank -%}
+          {{ section.settings.product_image | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake' }}
+        {%- else -%}
+          <img src="{{ 'apex-product-label.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake label" width="1810" height="869" loading="eager" fetchpriority="high">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Apex Energy Powder"
+    },
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Heading line 1",
+      "default": "Energy + Focus,"
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Heading line 2 (emphasized)",
+      "default": "Formulated Differently."
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Supporting line",
+      "default": "We didn't set out to build another energy drink. Apex is a caffeine + L-theanine formula with every ingredient and amount disclosed on the label — nothing hidden behind a proprietary blend."
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image",
+      "info": "Defaults to the Apex Energy Powder label artwork. Replace with a packaging render or photo when available."
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_label",
+      "label": "Primary button label",
+      "default": "Shop Apex"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_label",
+      "label": "Secondary button label",
+      "default": "Compare"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "Secondary button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

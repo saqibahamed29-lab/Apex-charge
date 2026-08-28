@@ -1,0 +1,90 @@
+<footer class="site-footer section--dark">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        {%- if settings.logo != blank -%}
+          {{ settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: shop.name }}
+        {%- else -%}
+          <img src="{{ 'apex-logo.png' | asset_url }}" alt="{{ shop.name | default: 'Apex Charge Labs' }}" width="486" height="241" loading="lazy">
+        {%- endif -%}
+        <p>{{ section.settings.brand_blurb }}</p>
+
+        {%- assign has_social = false -%}
+        {%- if settings.social_instagram != blank or settings.social_tiktok != blank or settings.social_youtube != blank or settings.social_x != blank or settings.social_facebook != blank -%}
+          {%- assign has_social = true -%}
+        {%- endif -%}
+        {%- if has_social -%}
+          <div class="footer-social">
+            {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" aria-label="Instagram">{% render 'icon', name: 'instagram' %}</a>{%- endif -%}
+            {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" aria-label="TikTok">{% render 'icon', name: 'tiktok' %}</a>{%- endif -%}
+            {%- if settings.social_youtube != blank -%}<a href="{{ settings.social_youtube }}" aria-label="YouTube">{% render 'icon', name: 'youtube' %}</a>{%- endif -%}
+            {%- if settings.social_x != blank -%}<a href="{{ settings.social_x }}" aria-label="X">{% render 'icon', name: 'x' %}</a>{%- endif -%}
+            {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" aria-label="Facebook">{% render 'icon', name: 'facebook' %}</a>{%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Shop</p>
+        <a href="{{ routes.all_products_collection_url }}">All Products</a>
+        <a href="#purchase-apex">Apex Energy Powder</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Research</p>
+        <a href="#the-research">The Research</a>
+        <a href="#comparison">Apex vs. the Category</a>
+        <a href="#check-five">What&rsquo;s In The Formula</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Company</p>
+        <a href="#our-story">Our Story</a>
+        <a href="#faq">FAQ</a>
+        {%- if settings.contact_email != blank -%}
+          <a href="mailto:{{ settings.contact_email }}">Contact Us</a>
+        {%- endif -%}
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col__title">Stay Updated</p>
+        {%- form 'customer', id: 'FooterNewsletter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p style="font-size: 13px; color: var(--color-gold-light);">You&rsquo;re on the list.</p>
+          {%- else -%}
+            <div class="footer-newsletter">
+              <label class="visually-hidden" for="FooterNewsletterEmail">Email address</label>
+              <input id="FooterNewsletterEmail" type="email" name="contact[email]" placeholder="Enter your email" required>
+              <button type="submit" aria-label="Sign up">{% render 'icon', name: 'chevron-right' %}</button>
+            </div>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        {%- if shop.policies.privacy_policy != blank -%}<a href="{{ shop.policies.privacy_policy.url }}">Privacy Policy</a>{%- endif -%}
+        {%- if shop.policies.terms_of_service != blank -%}<a href="{{ shop.policies.terms_of_service.url }}">Terms of Service</a>{%- endif -%}
+        {%- if shop.policies.refund_policy != blank -%}<a href="{{ shop.policies.refund_policy.url }}">Refund Policy</a>{%- endif -%}
+        {%- if shop.policies.shipping_policy != blank -%}<a href="{{ shop.policies.shipping_policy.url }}">Shipping Policy</a>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_blurb",
+      "label": "Brand blurb",
+      "default": "Energy + focus, formulated differently. Transparent ingredients, research-linked doses, nothing hidden."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,84 @@
+<section class="section section--white" id="the-research">
+  <div class="wrap">
+    <div style="max-width: 640px; margin-bottom: 44px;" data-animate>
+      <span class="eyebrow">The Research</span>
+      <h2 class="h-section">What's actually behind the formula</h2>
+    </div>
+
+    <div class="research-grid" data-animate>
+      {%- for block in section.blocks -%}
+        <div class="research-card" {{ block.shopify_attributes }}>
+          <div class="research-card__icon">{% render 'icon', name: block.settings.icon %}</div>
+          <h3 class="research-card__title">{{ block.settings.title }}</h3>
+          <p class="research-card__desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="research__cta" data-animate>
+      <a href="{{ section.settings.cta_url | default: '#' }}" class="btn btn--outline">
+        {{ section.settings.cta_label }}
+        {% render 'icon', name: 'chevron-right' %}
+      </a>
+      <p class="mono-tag" style="margin-top: 14px; text-transform: none; letter-spacing: normal; font-weight: 400;">{{ section.settings.cta_note }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The Research",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Read Sources"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    },
+    {
+      "type": "text",
+      "id": "cta_note",
+      "label": "CTA note",
+      "default": "Full citations are being compiled and will be linked here once verified."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "topic",
+      "name": "Research topic",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "brain", "label": "Brain" },
+            { "value": "bolt", "label": "Bolt" },
+            { "value": "flask", "label": "Flask" },
+            { "value": "leaf", "label": "Leaf" }
+          ],
+          "default": "brain"
+        },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Research",
+      "blocks": [
+        { "type": "topic", "settings": { "icon": "brain", "title": "Caffeine & Attention", "description": "How caffeine supports focus, alertness and reaction time." } },
+        { "type": "topic", "settings": { "icon": "leaf", "title": "L-Theanine", "description": "How L-theanine promotes calm focus without drowsiness." } },
+        { "type": "topic", "settings": { "icon": "bolt", "title": "Caffeine + L-Theanine", "description": "Why the pairing is formulated for smoother, more sustained focus than caffeine alone." } },
+        { "type": "topic", "settings": { "icon": "flask", "title": "B Vitamins & Energy Metabolism", "description": "How B vitamins help the body convert food into usable energy." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

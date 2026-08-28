@@ -1,0 +1,90 @@
+<section class="section section--white" id="why-apex">
+  <div class="wrap why-apex__grid">
+    <div class="why-apex__copy" data-animate>
+      <span class="eyebrow">Why Apex?</span>
+      <h2 class="h-section">{{ section.settings.heading }}</h2>
+      <div style="margin-top: 20px;">
+        {{ section.settings.body }}
+      </div>
+      <div class="molecule-row">
+        {% render 'icon', name: 'flask' %}
+        {% render 'icon', name: 'leaf' %}
+      </div>
+      <div class="why-apex__cta">
+        <a href="{{ section.settings.cta_url | default: '#the-research' }}" class="btn btn--ghost">
+          {{ section.settings.cta_label }}
+          {% render 'icon', name: 'chevron-right' %}
+        </a>
+      </div>
+    </div>
+
+    <div data-animate style="transition-delay: 100ms;">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-card__value">{{ section.settings.stat_one_value }}</div>
+          <div class="stat-card__label">{{ section.settings.stat_one_label }}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__value">{{ section.settings.stat_two_value }}</div>
+          <div class="stat-card__label">{{ section.settings.stat_two_label }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Apex",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We focused on the formula."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body copy",
+      "default": "<p>We didn't want to make another energy drink.</p><p>We wanted to build an energy formula around energy + focus, with ingredients selected for a reason and amounts clearly disclosed.</p>"
+    },
+    {
+      "type": "text",
+      "id": "stat_one_value",
+      "label": "Stat one value",
+      "default": "200mg"
+    },
+    {
+      "type": "text",
+      "id": "stat_one_label",
+      "label": "Stat one label",
+      "default": "Caffeine"
+    },
+    {
+      "type": "text",
+      "id": "stat_two_value",
+      "label": "Stat two value",
+      "default": "100mg"
+    },
+    {
+      "type": "text",
+      "id": "stat_two_label",
+      "label": "Stat two label",
+      "default": "L-Theanine"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "See the Research"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    }
+  ],
+  "presets": [{ "name": "Why Apex" }]
+}
+{% endschema %}

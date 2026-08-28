@@ -1,0 +1,62 @@
+<section class="section section--paper">
+  <div class="wrap">
+    <div style="max-width: 640px; margin-bottom: 40px;" data-animate>
+      <span class="eyebrow">Before you check out</span>
+      <h2 class="h-section">Try Apex</h2>
+    </div>
+
+    <div class="try-grid" data-animate>
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          <div class="try-card__icon">{% render 'icon', name: block.settings.icon %}</div>
+          <p class="try-card__title">{{ block.settings.title }}</p>
+          <p class="try-card__desc">
+            {{ block.settings.description }}
+            {%- if block.settings.needs_input -%}
+              <span style="display:inline-block; margin-left:6px; font-size:11px; font-weight:700; letter-spacing:0.04em; color:#B5772A;">[NEEDS INPUT]</span>
+            {%- endif -%}
+          </p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Try Apex",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Reassurance point",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "guarantee", "label": "Guarantee" },
+            { "value": "truck", "label": "Shipping" },
+            { "value": "refresh", "label": "Returns" }
+          ],
+          "default": "guarantee"
+        },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "checkbox", "id": "needs_input", "label": "Flag as needing input", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Try Apex",
+      "blocks": [
+        { "type": "point", "settings": { "icon": "guarantee", "title": "Guarantee", "description": "Add your return window and refund terms.", "needs_input": true } },
+        { "type": "point", "settings": { "icon": "truck", "title": "Shipping", "description": "Add carrier, origin, and delivery time estimates.", "needs_input": true } },
+        { "type": "point", "settings": { "icon": "refresh", "title": "Returns", "description": "Add your return and exchange process.", "needs_input": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

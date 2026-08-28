@@ -1,0 +1,23 @@
+<div class="cart-drawer-overlay" data-cart-overlay></div>
+<aside class="cart-drawer" data-cart-drawer role="dialog" aria-modal="true" aria-label="Shopping cart">
+  <div class="cart-drawer__head">
+    <h2>Your Cart</h2>
+    <button class="icon-btn" type="button" data-cart-close aria-label="Close cart">
+      {% render 'icon', name: 'close' %}
+    </button>
+  </div>
+  <div class="cart-drawer__body" data-cart-body>
+    <p class="cart-drawer__empty">Loading…</p>
+  </div>
+  <div class="cart-drawer__foot" data-cart-foot hidden>
+    <div class="cart-drawer__subtotal">
+      <span>Subtotal</span>
+      <span data-cart-subtotal>$0.00</span>
+    </div>
+    <a href="/checkout" class="btn btn--gold btn--block" data-cart-checkout>Checkout</a>
+  </div>
+</aside>
+
+{% if settings.sticky_mobile_cta %}
+  {% render 'sticky-mobile-cta' %}
+{% endif %}

@@ -1,0 +1,99 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "why-apex": { "type": "why-apex" },
+    "check-five-things": {
+      "type": "check-five-things",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "title": "Caffeine", "description": "How much, and where it comes from." } },
+        "item-2": { "type": "item", "settings": { "title": "L-Theanine", "description": "Whether it's dosed enough to actually smooth out the caffeine." } },
+        "item-3": { "type": "item", "settings": { "title": "B Vitamins", "description": "Support for how your body converts food into usable energy." } },
+        "item-4": { "type": "item", "settings": { "title": "Sugar & Calories", "description": "What you're actually adding to your day besides energy." } },
+        "item-5": { "type": "item", "settings": { "title": "What's Actually In The Formula?", "description": "Every ingredient, named and dosed — not a proprietary blend." } }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4", "item-5"]
+    },
+    "comparison-table": { "type": "comparison-table" },
+    "research": {
+      "type": "research",
+      "blocks": {
+        "topic-1": { "type": "topic", "settings": { "icon": "brain", "title": "Caffeine & Attention", "description": "How caffeine supports focus, alertness and reaction time." } },
+        "topic-2": { "type": "topic", "settings": { "icon": "leaf", "title": "L-Theanine", "description": "How L-theanine promotes calm focus without drowsiness." } },
+        "topic-3": { "type": "topic", "settings": { "icon": "bolt", "title": "Caffeine + L-Theanine", "description": "Why the pairing is formulated for smoother, more sustained focus than caffeine alone." } },
+        "topic-4": { "type": "topic", "settings": { "icon": "flask", "title": "B Vitamins & Energy Metabolism", "description": "How B vitamins help the body convert food into usable energy." } }
+      },
+      "block_order": ["topic-1", "topic-2", "topic-3", "topic-4"]
+    },
+    "focused-moments": {
+      "type": "focused-moments",
+      "blocks": {
+        "moment-1": { "type": "moment", "settings": { "label": "Work" } },
+        "moment-2": { "type": "moment", "settings": { "label": "Gaming" } },
+        "moment-3": { "type": "moment", "settings": { "label": "Study" } },
+        "moment-4": { "type": "moment", "settings": { "label": "Creative Work" } },
+        "moment-5": { "type": "moment", "settings": { "label": "Training" } }
+      },
+      "block_order": ["moment-1", "moment-2", "moment-3", "moment-4", "moment-5"]
+    },
+    "apex-standard": {
+      "type": "apex-standard",
+      "blocks": {
+        "pillar-1": { "type": "pillar", "settings": { "icon": "no-blend", "title": "No Mystery Blends" } },
+        "pillar-2": { "type": "pillar", "settings": { "icon": "star-off", "title": "No Made-Up Reviews" } },
+        "pillar-3": { "type": "pillar", "settings": { "icon": "no-magic", "title": "No Magic Claims" } },
+        "pillar-4": { "type": "pillar", "settings": { "icon": "dose", "title": "No Hidden Doses" } }
+      },
+      "block_order": ["pillar-1", "pillar-2", "pillar-3", "pillar-4"]
+    },
+    "ugc-video": {
+      "type": "ugc-video",
+      "blocks": {
+        "clip-1": { "type": "clip", "settings": { "caption": "Mixing Apex" } },
+        "clip-2": { "type": "clip", "settings": { "caption": "First sip" } },
+        "clip-3": { "type": "clip", "settings": { "caption": "Training session" } }
+      },
+      "block_order": ["clip-1", "clip-2", "clip-3"]
+    },
+    "product-purchase": { "type": "product-purchase" },
+    "try-apex": {
+      "type": "try-apex",
+      "blocks": {
+        "point-1": { "type": "point", "settings": { "icon": "guarantee", "title": "Guarantee", "description": "Add your return window and refund terms.", "needs_input": true } },
+        "point-2": { "type": "point", "settings": { "icon": "truck", "title": "Shipping", "description": "Add carrier, origin, and delivery time estimates.", "needs_input": true } },
+        "point-3": { "type": "point", "settings": { "icon": "refresh", "title": "Returns", "description": "Add your return and exchange process.", "needs_input": true } }
+      },
+      "block_order": ["point-1", "point-2", "point-3"]
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q-1": { "type": "question", "settings": { "question": "How much caffeine is in Apex?", "answer": "<p>Each serving (2 scoops) has 200mg of natural caffeine from green tea, paired with 100mg of L-theanine.</p>" } },
+        "q-2": { "type": "question", "settings": { "question": "Does Apex have sugar or artificial sweeteners?", "answer": "<p>Apex has 0g of sugar per serving. It's sweetened with sucralose and colored naturally with red beet juice powder.</p>" } },
+        "q-3": { "type": "question", "settings": { "question": "What flavor is Apex, and how do I mix it?", "answer": "<p>Apex comes in Strawberry Shortcake. Mix 1 scoop with 6&ndash;10 fl oz of water, or to taste &mdash; use 2 scoops with double the water. Do not exceed 5 scoops in a 24-hour period.</p>" } },
+        "q-4": { "type": "question", "settings": { "question": "Is Apex gluten-free and vegan?", "answer": "<p>Yes. Apex is gluten-free, sugar-free, and vegan-friendly, per the product label.</p>" } },
+        "q-5": { "type": "question", "settings": { "question": "What allergens should I know about?", "answer": "<p>Apex is manufactured in a facility that also processes milk, eggs, fish, shellfish, tree nuts, peanuts, wheat, soybeans, and sesame.</p>" } },
+        "q-6": { "type": "question", "settings": { "question": "Is Apex safe for daily use?", "answer": "<p>The label recommends no more than 5 scoops within a 24-hour period. If you're pregnant, nursing, have a medical condition, or take medication, consult your physician before use.</p>" } },
+        "q-7": { "type": "question", "settings": { "question": "When is the best time to take Apex?", "answer": "", "needs_input": true } },
+        "q-8": { "type": "question", "settings": { "question": "What makes Apex different?", "answer": "<p>We built Apex around one formula, not a drink category &mdash; caffeine and L-theanine dosed with a reason, every ingredient named on the label, and no proprietary blends hiding the amounts.</p>" } }
+      },
+      "block_order": ["q-1", "q-2", "q-3", "q-4", "q-5", "q-6", "q-7", "q-8"]
+    },
+    "our-story": { "type": "our-story" },
+    "final-cta": { "type": "final-cta" }
+  },
+  "order": [
+    "hero",
+    "why-apex",
+    "check-five-things",
+    "comparison-table",
+    "research",
+    "focused-moments",
+    "apex-standard",
+    "ugc-video",
+    "product-purchase",
+    "try-apex",
+    "faq",
+    "our-story",
+    "final-cta"
+  ]
+}

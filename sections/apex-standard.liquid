@@ -1,0 +1,56 @@
+<section class="section section--dark" style="padding-block: clamp(40px, 6vw, 72px) clamp(56px, 8vw, 100px);">
+  <div class="wrap">
+    <div style="max-width: 640px; margin-bottom: 36px;" data-animate>
+      <span class="eyebrow">No fine print required</span>
+      <h2 class="h-section">The Apex Standard</h2>
+    </div>
+
+    <div class="standard-grid" data-animate>
+      {%- for block in section.blocks -%}
+        <div class="standard-card" {{ block.shopify_attributes }}>
+          <div class="standard-card__icon">{% render 'icon', name: block.settings.icon %}</div>
+          <p class="standard-card__title">{{ block.settings.title }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "The Apex Standard",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "no-blend", "label": "No blend" },
+            { "value": "star-off", "label": "Star off" },
+            { "value": "no-magic", "label": "No magic" },
+            { "value": "dose", "label": "Dose" }
+          ],
+          "default": "no-blend"
+        },
+        { "type": "text", "id": "title", "label": "Title" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Apex Standard",
+      "blocks": [
+        { "type": "pillar", "settings": { "icon": "no-blend", "title": "No Mystery Blends" } },
+        { "type": "pillar", "settings": { "icon": "star-off", "title": "No Made-Up Reviews" } },
+        { "type": "pillar", "settings": { "icon": "no-magic", "title": "No Magic Claims" } },
+        { "type": "pillar", "settings": { "icon": "dose", "title": "No Hidden Doses" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

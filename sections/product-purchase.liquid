@@ -1,0 +1,166 @@
+{%- liquid
+  assign product = section.settings.product
+  assign servings = section.settings.servings_per_container
+-%}
+
+<section class="section section--navy" id="purchase-apex">
+  <div class="wrap purchase">
+    <div class="purchase__visual" data-animate>
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Apex Energy Powder' }}
+      {%- elsif product.featured_image -%}
+        {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: product.featured_image.alt | default: product.title }}
+      {%- else -%}
+        <img src="{{ 'apex-product-label.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake label" width="1810" height="869" loading="lazy">
+      {%- endif -%}
+    </div>
+
+    <div data-animate style="transition-delay: 100ms;">
+      <span class="eyebrow">Meet</span>
+      <h2 class="h-section" style="margin-bottom: 24px;">{{ product.title | default: 'Apex Energy Powder' }}</h2>
+
+      <div class="purchase__panel">
+        <div class="purchase__meta-row">
+          <span>Product</span>
+          <span>{{ product.title | default: 'Apex Energy Powder — Strawberry Shortcake' }}</span>
+        </div>
+        <div class="purchase__meta-row">
+          <span>Price</span>
+          <span>
+            {%- if product and product.selected_or_first_available_variant -%}
+              {{ product.selected_or_first_available_variant.price | money }}
+            {%- else -%}
+              {{ section.settings.fallback_price }}
+            {%- endif -%}
+          </span>
+        </div>
+        <div class="purchase__meta-row">
+          <span>Servings</span>
+          <span>{{ servings }}</span>
+        </div>
+        <div class="purchase__meta-row">
+          <span>$ / Serving</span>
+          <span>
+            {%- if product and product.selected_or_first_available_variant and servings > 0 -%}
+              {{ product.selected_or_first_available_variant.price | divided_by: servings | money }}
+            {%- else -%}
+              {{ section.settings.fallback_per_serving }}
+            {%- endif -%}
+          </span>
+        </div>
+
+        {%- if product and product.variants.size > 0 -%}
+          <form method="post" action="{{ routes.cart_add_url }}" id="ProductForm-{{ section.id }}" data-product-form data-section-id="{{ section.id }}">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-selected-variant-id>
+
+            <div class="variant-options" role="radiogroup" aria-label="Purchase option">
+              {%- for variant in product.variants -%}
+                <label class="variant-option{% if forloop.first %} is-selected{% endif %}" data-variant-option data-variant-id="{{ variant.id }}" data-variant-price="{{ variant.price }}">
+                  <input
+                    type="radio"
+                    name="purchase-option-{{ section.id }}"
+                    value="{{ variant.id }}"
+                    {% if forloop.first %}checked{% endif %}
+                    {% unless variant.available %}disabled{% endunless %}
+                    aria-label="{{ variant.title }}, {{ variant.price | money }}">
+                  <span class="variant-option__left">
+                    <span class="variant-option__radio" aria-hidden="true"></span>
+                    <span>
+                      <span class="variant-option__name">{{ variant.title }}</span>
+                      {%- unless variant.available -%}
+                        <span class="variant-option__sub">Sold out</span>
+                      {%- endunless -%}
+                    </span>
+                  </span>
+                  <span class="variant-option__price">
+                    <span class="variant-option__price-now">{{ variant.price | money }}</span>
+                    {%- if variant.compare_at_price > variant.price -%}
+                      <span class="variant-option__price-each">{{ variant.compare_at_price | money }}</span>
+                    {%- endif -%}
+                  </span>
+                </label>
+              {%- endfor -%}
+            </div>
+
+            <button type="submit" class="btn btn--gold btn--block purchase__add" data-add-to-cart {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+              <span data-add-label>
+                {%- if product.selected_or_first_available_variant.available -%}
+                  Add to Cart — {{ product.selected_or_first_available_variant.price | money }}
+                {%- else -%}
+                  Sold Out
+                {%- endif -%}
+              </span>
+            </button>
+          </form>
+          <p class="purchase__add-note">{% render 'icon', name: 'check-shield' %} Secure checkout, powered by Shopify. Final total calculated at checkout.</p>
+        {%- else -%}
+          <div class="variant-options">
+            <div class="variant-option is-selected" style="cursor: default;">
+              <span class="variant-option__left">
+                <span class="variant-option__radio" aria-hidden="true"></span>
+                <span class="variant-option__name">1 Bottle</span>
+              </span>
+              <span class="variant-option__price-now">{{ section.settings.fallback_price }}</span>
+            </div>
+            <div class="variant-option" style="cursor: default;">
+              <span class="variant-option__left">
+                <span class="variant-option__radio" aria-hidden="true"></span>
+                <span>
+                  <span class="variant-option__name">3 Bottles<span class="variant-option__badge">Best Value</span></span>
+                </span>
+              </span>
+              <span class="variant-option__price-now">{{ section.settings.fallback_bundle_price }}</span>
+            </div>
+          </div>
+          <button type="button" class="btn btn--gold btn--block purchase__add" disabled>Add to Cart</button>
+          <p class="purchase__add-note">{% render 'icon', name: 'check-shield' %} Connect the Apex Energy Powder product in the theme editor (with a 1‑bottle and 3‑bottle‑bundle variant) to activate checkout.</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product purchase",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "Connect the real Apex Energy Powder product to enable live checkout. Add a variant for each purchase option (e.g. 1 Bottle, 3 Bottles)."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image override",
+      "info": "Optional. Falls back to the product's featured image, then the label artwork."
+    },
+    {
+      "type": "number",
+      "id": "servings_per_container",
+      "label": "Servings per container",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "fallback_price",
+      "label": "Placeholder price (shown until a product is connected)",
+      "default": "$69.00"
+    },
+    {
+      "type": "text",
+      "id": "fallback_bundle_price",
+      "label": "Placeholder bundle price (shown until a product is connected)",
+      "default": "$149.00"
+    },
+    {
+      "type": "text",
+      "id": "fallback_per_serving",
+      "label": "Placeholder $/serving",
+      "default": "$3.45"
+    }
+  ],
+  "presets": [{ "name": "Product purchase" }]
+}
+{% endschema %}

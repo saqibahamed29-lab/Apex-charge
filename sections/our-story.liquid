@@ -1,0 +1,64 @@
+<section class="section section--paper" id="our-story">
+  <div class="wrap story-grid">
+    <div data-animate>
+      <span class="eyebrow">Our Story</span>
+      <h2 class="h-section" style="margin-bottom: 22px;">{{ section.settings.heading }}</h2>
+      <div class="story-copy lede" style="max-width: 56ch;">
+        {{ section.settings.body }}
+      </div>
+      {%- if section.settings.show_placeholder_note -%}
+        <p class="story-signoff">&mdash; Final founder story and signature to be added.</p>
+      {%- else -%}
+        <p class="story-signoff">{{ section.settings.signoff }}</p>
+      {%- endif -%}
+    </div>
+
+    <div data-animate style="transition-delay: 100ms;">
+      {%- if section.settings.image != blank -%}
+        <div class="story-visual">
+          {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: section.settings.image.alt | default: 'Apex Charge Labs founder' }}
+        </div>
+      {%- else -%}
+        <div class="story-visual story-visual--placeholder">Founder / story photo needed</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Apex exists."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body copy",
+      "default": "<p>We were tired of energy drinks built around sugar, proprietary blends, and marketing hype instead of a formula you can actually check.</p><p>Apex Charge Labs started with a simpler idea: disclose everything, dose it for a reason, and let the label do the convincing.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_placeholder_note",
+      "label": "Show \"story to be added\" placeholder note",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "signoff",
+      "label": "Sign-off (used when placeholder note is off)",
+      "default": "— The Apex Charge Labs team"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Founder / story photo"
+    }
+  ],
+  "presets": [{ "name": "Our Story" }]
+}
+{% endschema %}

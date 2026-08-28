@@ -1,0 +1,70 @@
+<section class="section section--paper" id="check-five">
+  <div class="wrap">
+    <div style="max-width: 640px; margin-bottom: 44px;" data-animate>
+      <span class="eyebrow">Before you buy an energy drink</span>
+      <h2 class="h-section">Check these 5 things</h2>
+    </div>
+
+    <div class="checklist" data-animate-group data-animate>
+      {%- for block in section.blocks -%}
+        <div class="checklist__item" style="--i: {{ forloop.index0 }};" {{ block.shopify_attributes }}>
+          <span class="checklist__num">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+          <div>
+            <p class="checklist__title">{{ block.settings.title }}</p>
+            {%- if block.settings.description != blank -%}
+              <p class="checklist__desc">{{ block.settings.description }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="check5__cta" data-animate>
+      <a href="{{ section.settings.cta_url | default: '#the-research' }}" class="btn btn--outline">
+        {{ section.settings.cta_label }}
+        {% render 'icon', name: 'chevron-right' %}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Check 5 things",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Read the Research"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Checklist item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Check 5 things",
+      "blocks": [
+        { "type": "item", "settings": { "title": "Caffeine", "description": "How much, and where it comes from." } },
+        { "type": "item", "settings": { "title": "L-Theanine", "description": "Whether it's dosed enough to actually smooth out the caffeine." } },
+        { "type": "item", "settings": { "title": "B Vitamins", "description": "Support for how your body converts food into usable energy." } },
+        { "type": "item", "settings": { "title": "Sugar & Calories", "description": "What you're actually adding to your day besides energy." } },
+        { "type": "item", "settings": { "title": "What's Actually In The Formula?", "description": "Every ingredient, named and dosed — not a proprietary blend." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,53 @@
+<section class="section section--white" id="see-apex">
+  <div class="wrap">
+    <div style="max-width: 640px; margin-bottom: 36px;" data-animate>
+      <span class="eyebrow">Real usage, not stock footage</span>
+      <h2 class="h-section">See Apex in Action</h2>
+    </div>
+
+    <div class="ugc-grid" data-animate>
+      {%- for block in section.blocks -%}
+        {%- if block.settings.video_url != blank or block.settings.thumbnail != blank -%}
+          <a class="ugc-card" href="{{ block.settings.video_url | default: '#' }}" {% if block.settings.video_url != blank %}target="_blank" rel="noopener"{% endif %} {{ block.shopify_attributes }}>
+            {%- if block.settings.thumbnail != blank -%}
+              {{ block.settings.thumbnail | image_url: width: 500 | image_tag: loading: 'lazy', alt: block.settings.caption }}
+            {%- endif -%}
+            <span class="ugc-card__play"><span>{% render 'icon', name: 'play' %}</span></span>
+          </a>
+        {%- else -%}
+          <div class="ugc-card ugc-card--placeholder" {{ block.shopify_attributes }}>
+            UGC video needed<br>{{ block.settings.caption }}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "See Apex in Action",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "clip",
+      "name": "Video slot",
+      "settings": [
+        { "type": "image_picker", "id": "thumbnail", "label": "Thumbnail" },
+        { "type": "url", "id": "video_url", "label": "Video link" },
+        { "type": "text", "id": "caption", "label": "Caption", "default": "Customer clip" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "See Apex in Action",
+      "blocks": [
+        { "type": "clip", "settings": { "caption": "Mixing Apex" } },
+        { "type": "clip", "settings": { "caption": "First sip" } },
+        { "type": "clip", "settings": { "caption": "Training session" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

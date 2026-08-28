@@ -1,0 +1,53 @@
+<section class="section section--dark" style="padding-block: clamp(56px, 8vw, 100px) clamp(40px, 6vw, 72px);">
+  <div class="wrap">
+    <div style="max-width: 640px; margin-bottom: 36px;" data-animate>
+      <span class="eyebrow">Built for the moments that need it</span>
+      <h2 class="h-section">For Focused Moments</h2>
+    </div>
+  </div>
+
+  <div class="moments-grid" data-animate>
+    {%- for block in section.blocks -%}
+      <div class="moment-card" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings.label }}
+          <div class="moment-card__scrim" aria-hidden="true"></div>
+          <span class="moment-card__label">{{ block.settings.label }}</span>
+        {%- else -%}
+          <div class="moment-card moment-card--placeholder" style="position: static; width: 100%; height: 100%;">
+            {{ block.settings.label }} — photo needed
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Focused moments",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "moment",
+      "name": "Moment",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo" },
+        { "type": "text", "id": "label", "label": "Label" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Focused moments",
+      "blocks": [
+        { "type": "moment", "settings": { "label": "Work" } },
+        { "type": "moment", "settings": { "label": "Gaming" } },
+        { "type": "moment", "settings": { "label": "Study" } },
+        { "type": "moment", "settings": { "label": "Creative Work" } },
+        { "type": "moment", "settings": { "label": "Training" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,203 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Apex Charge Labs",
+    "theme_version": "1.0.0",
+    "theme_author": "Apex Charge Labs",
+    "theme_documentation_url": "https://apexchargelabs.com",
+    "theme_support_url": "https://apexchargelabs.com"
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo",
+        "info": "Defaults to the Apex Charge Labs mark shipped with this theme"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 80,
+        "max": 220,
+        "step": 4,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 148
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink (primary dark)",
+        "default": "#0A1730"
+      },
+      {
+        "type": "color",
+        "id": "color_navy",
+        "label": "Navy",
+        "default": "#0F2247"
+      },
+      {
+        "type": "color",
+        "id": "color_navy_deep",
+        "label": "Navy deep (sections)",
+        "default": "#081226"
+      },
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Gold",
+        "default": "#C9A227"
+      },
+      {
+        "type": "color",
+        "id": "color_gold_light",
+        "label": "Gold light",
+        "default": "#E7C766"
+      },
+      {
+        "type": "header",
+        "content": "Surface"
+      },
+      {
+        "type": "color",
+        "id": "color_paper",
+        "label": "Paper background",
+        "default": "#F7F5EF"
+      },
+      {
+        "type": "color",
+        "id": "color_white",
+        "label": "White",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_line",
+        "label": "Hairline",
+        "default": "#DAD5C6"
+      },
+      {
+        "type": "header",
+        "content": "Text"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Body text",
+        "default": "#1B2333"
+      },
+      {
+        "type": "color",
+        "id": "color_text_muted",
+        "label": "Muted text",
+        "default": "#5B6272"
+      },
+      {
+        "type": "color",
+        "id": "color_text_on_dark",
+        "label": "Text on dark",
+        "default": "#F3F1E8"
+      },
+      {
+        "type": "color",
+        "id": "color_text_on_dark_muted",
+        "label": "Muted text on dark",
+        "default": "#9AA3B8"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1100,
+        "max": 1600,
+        "step": 20,
+        "unit": "px",
+        "label": "Max page width",
+        "default": 1320
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_mobile_cta",
+        "label": "Show sticky mobile purchase bar",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Motion",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_scroll_animations",
+        "label": "Enable scroll-reveal animations",
+        "info": "Automatically disabled for visitors who prefer reduced motion",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Add links only for accounts that exist"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "text",
+        "id": "social_x",
+        "label": "X (Twitter) URL"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      }
+    ]
+  },
+  {
+    "name": "Contact",
+    "settings": [
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Support email",
+        "default": "support@apexchargelabs.com"
+      }
+    ]
+  }
+]

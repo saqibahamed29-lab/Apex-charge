@@ -1,0 +1,24 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_ink": "#0A1730",
+      "color_navy": "#0F2247",
+      "color_navy_deep": "#081226",
+      "color_gold": "#C9A227",
+      "color_gold_light": "#E7C766",
+      "color_paper": "#F7F5EF",
+      "color_white": "#FFFFFF",
+      "color_line": "#DAD5C6",
+      "color_text": "#1B2333",
+      "color_text_muted": "#5B6272",
+      "color_text_on_dark": "#F3F1E8",
+      "color_text_on_dark_muted": "#9AA3B8",
+      "logo_width": 148,
+      "page_width": 1320,
+      "sticky_mobile_cta": true,
+      "enable_scroll_animations": true,
+      "contact_email": "support@apexchargelabs.com"
+    }
+  }
+}
