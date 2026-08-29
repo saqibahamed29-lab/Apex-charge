@@ -37,6 +37,7 @@
   --gutter: clamp(20px, 5vw, 64px);
   --radius-sm: 3px;
   --radius-md: 8px;
+  --radius-btn: 10px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -135,7 +136,7 @@ button { cursor: pointer; }
 /* ---- buttons --------------------------------------------------------------*/
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  height: 58px; padding-inline: 34px; border-radius: var(--radius-sm);
+  height: 58px; padding-inline: 34px; border-radius: var(--radius-btn);
   border: 1.5px solid transparent;
   font-family: var(--font-ui); font-weight: 700; font-size: 14px;
   letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
@@ -219,7 +220,7 @@ html.no-js [data-animate] { opacity: 1; transform: none; }
    ========================================================================== */
 .site-header {
   position: sticky; top: 0; z-index: 60;
-  background: var(--color-navy);
+  background: var(--color-black);
   border-bottom: 1px solid rgba(201,162,39,0.18);
   color: var(--color-text-on-dark);
   transition: box-shadow var(--dur-base) var(--ease-out);
