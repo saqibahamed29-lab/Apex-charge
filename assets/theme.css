@@ -666,6 +666,11 @@ table.compare-table { width: 100%; border-collapse: collapse; min-width: 620px; 
 .site-footer { padding-block: 64px 32px; }
 .footer-top { display: grid; grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; }
 @media (min-width: 720px) { .footer-top { grid-template-columns: 1.4fr repeat(4, 1fr); gap: 24px; } }
+.footer-brand__mark { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.footer-brand__mark img { height: 32px; width: auto; margin: 0; }
+.footer-brand__wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+.footer-brand__wordmark-line1 { font-family: var(--font-ui); font-weight: 700; font-size: 15px; letter-spacing: 0.02em; color: var(--color-text-on-dark); }
+.footer-brand__wordmark-line2 { font-family: var(--font-ui); font-weight: 600; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-gold-light); }
 .footer-brand img { height: 24px; margin-bottom: 16px; }
 .footer-brand p { color: var(--color-text-on-dark-muted); font-size: 14px; max-width: 32ch; }
 .footer-social { display: flex; gap: 14px; margin-top: 22px; }

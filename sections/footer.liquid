@@ -5,7 +5,13 @@
         {%- if settings.logo != blank -%}
           {{ settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: shop.name }}
         {%- else -%}
-          <img src="{{ 'apex-logo.png' | asset_url }}" alt="{{ shop.name | default: 'Apex Charge Labs' }}" width="486" height="241" loading="lazy">
+          <span class="footer-brand__mark">
+            <img src="{{ 'apex-mark.png' | asset_url }}" alt="" width="133" height="128" loading="lazy">
+            <span class="footer-brand__wordmark">
+              <span class="footer-brand__wordmark-line1">Apex</span>
+              <span class="footer-brand__wordmark-line2">Charge Labs</span>
+            </span>
+          </span>
         {%- endif -%}
         <p>{{ section.settings.brand_blurb }}</p>
 
