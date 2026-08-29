@@ -1,42 +1,61 @@
 <section class="hero" id="top">
-  <div class="wrap hero__inner">
-    <div class="hero__content" data-animate>
-      <span class="hero__kicker">{{ section.settings.eyebrow }}</span>
+  <div class="hero__inner">
+    <div class="hero__content-col">
+      <div class="hero__content" data-animate>
+      <span class="hero__ribbon">{{ section.settings.eyebrow }}</span>
 
-      <h1 class="h-display hero__title">
-        {{ section.settings.heading_line1 }}<br>
-        <em>{{ section.settings.heading_line2 }}</em>
+      <h1 class="hero__title">
+        <span class="hero__title-line hero__title-line--ink">{{ section.settings.heading_line1 }}</span>
+        <span class="hero__title-line hero__title-line--accent">{{ section.settings.heading_line2 }}</span>
+        <span class="hero__title-line hero__title-line--accent">{{ section.settings.heading_line3 }}</span>
       </h1>
 
-      <p class="lede hero__lede">{{ section.settings.lede }}</p>
+      <p class="hero__lede">{{ section.settings.lede }}</p>
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="hero__features" data-animate-group>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <li class="hero__feature" data-animate {{ block.shopify_attributes }}>
+                <span class="hero__feature-icon">{% render 'icon', name: block.settings.icon %}</span>
+                <span class="hero__feature-copy">
+                  <span class="hero__feature-title">{{ block.settings.title }}</span>
+                  <span class="hero__feature-text">{{ block.settings.text }}</span>
+                </span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
 
       <div class="hero__ctas">
-        <a href="{{ section.settings.primary_cta_url | default: '#purchase-apex' }}" class="btn btn--lime">{{ section.settings.primary_cta_label }}</a>
-        <a href="{{ section.settings.secondary_cta_url | default: '#comparison' }}" class="btn btn--outline">
-          {{ section.settings.secondary_cta_label }}
-          {% render 'icon', name: 'chevron-right' %}
-        </a>
+        <a href="{{ section.settings.primary_cta_url | default: '#purchase-apex' }}" class="btn btn--gold">{{ section.settings.primary_cta_label }}</a>
+        <a href="{{ section.settings.secondary_cta_url | default: '#comparison' }}" class="btn btn--outline-navy">{{ section.settings.secondary_cta_label }}</a>
       </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="hero__trust">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'trust_item' -%}
+              <div class="hero__trust-item" {{ block.shopify_attributes }}>
+                <span class="hero__trust-icon">{% render 'icon', name: block.settings.icon %}</span>
+                <span class="hero__trust-label">{{ block.settings.label }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
     </div>
 
     <div class="hero__visual" data-animate style="transition-delay: 120ms;">
-      <div class="hero__visual-glow" aria-hidden="true"></div>
-      <div class="hero__visual-ring" aria-hidden="true"></div>
       <div class="hero__visual-frame">
         {%- if section.settings.product_image != blank -%}
-          {{ section.settings.product_image | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake' }}
+          {{ section.settings.product_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake' }}
         {%- else -%}
           <img src="{{ 'apex-product-label.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake label" width="1810" height="869" loading="eager" fetchpriority="high">
         {%- endif -%}
       </div>
-    </div>
-  </div>
-
-  <div class="trust-strip">
-    <div class="wrap pill-row">
-      <span class="pill">{% render 'icon', name: 'flask' %}Transparent Formula</span>
-      <span class="pill">{% render 'icon', name: 'check-shield' %}Research-Linked</span>
-      <span class="pill">{% render 'icon', name: 'dose' %}Clearly Disclosed</span>
     </div>
   </div>
 </section>
@@ -48,32 +67,38 @@
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "Apex Energy Powder"
+      "label": "Ribbon badge",
+      "default": "Fuel · Focus · Performance"
     },
     {
       "type": "text",
       "id": "heading_line1",
-      "label": "Heading line 1",
+      "label": "Heading line 1 (ink)",
       "default": "Energy + Focus,"
     },
     {
       "type": "text",
       "id": "heading_line2",
-      "label": "Heading line 2 (emphasized)",
-      "default": "Formulated Differently."
+      "label": "Heading line 2 (accent)",
+      "default": "Formulated"
+    },
+    {
+      "type": "text",
+      "id": "heading_line3",
+      "label": "Heading line 3 (accent)",
+      "default": "Differently."
     },
     {
       "type": "textarea",
       "id": "lede",
       "label": "Supporting line",
-      "default": "We didn't set out to build another energy drink. Apex is a caffeine + L-theanine formula with every ingredient and amount disclosed on the label — nothing hidden behind a proprietary blend."
+      "default": "Clean ingredients. Transparent formula. Real results."
     },
     {
       "type": "image_picker",
       "id": "product_image",
       "label": "Product image",
-      "info": "Defaults to the Apex Energy Powder label artwork. Replace with the real Shopify product image/render once available."
+      "info": "Defaults to the Apex Energy Powder label artwork. Replace with real product photography once available."
     },
     {
       "type": "text",
@@ -98,9 +123,79 @@
       "label": "Secondary button link"
     }
   ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature row",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "bolt", "label": "Bolt" },
+            { "value": "droplet", "label": "Droplet" },
+            { "value": "flask", "label": "Flask" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "check-shield", "label": "Shield check" },
+            { "value": "microscope", "label": "Microscope" }
+          ],
+          "default": "bolt"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Supports Energy & Focus*"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Supporting text",
+          "default": "Powered by research-backed ingredients."
+        }
+      ]
+    },
+    {
+      "type": "trust_item",
+      "name": "Trust bar item",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "check-shield", "label": "Shield check" },
+            { "value": "microscope", "label": "Microscope" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "droplet", "label": "Droplet" },
+            { "value": "flask", "label": "Flask" },
+            { "value": "bolt", "label": "Bolt" }
+          ],
+          "default": "check-shield"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Transparent Formula"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Hero"
+      "name": "Hero",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "bolt", "title": "Supports Energy & Focus*", "text": "Powered by research-backed ingredients." } },
+        { "type": "feature", "settings": { "icon": "droplet", "title": "Maintains Electrolyte Balance*", "text": "Stay hydrated. Stay sharp." } },
+        { "type": "feature", "settings": { "icon": "flask", "title": "Transparent Formula", "text": "No hidden blends. No proprietary formulas." } },
+        { "type": "trust_item", "settings": { "icon": "check-shield", "label": "Transparent Formula" } },
+        { "type": "trust_item", "settings": { "icon": "microscope", "label": "Research Linked" } },
+        { "type": "trust_item", "settings": { "icon": "leaf", "label": "Clean & Disclosed" } }
+      ]
     }
   ]
 }

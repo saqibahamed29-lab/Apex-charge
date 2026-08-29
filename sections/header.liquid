@@ -16,13 +16,17 @@
           fetchpriority="high">
       {%- else -%}
         <img
-          src="{{ 'apex-logo.png' | asset_url }}"
-          alt="{{ shop.name | default: 'Apex Charge Labs' }}"
-          width="{{ settings.logo_width }}"
-          height="{{ settings.logo_width | times: 241 | divided_by: 486 }}"
-          style="width: {{ settings.logo_width }}px;"
+          class="site-header__mark"
+          src="{{ 'apex-mark.png' | asset_url }}"
+          alt=""
+          width="133"
+          height="128"
           loading="eager"
           fetchpriority="high">
+        <span class="site-header__wordmark">
+          <span class="site-header__wordmark-line1">Apex</span>
+          <span class="site-header__wordmark-line2">Charge Labs</span>
+        </span>
       {%- endif -%}
     </a>
 
@@ -40,6 +44,9 @@
         {% render 'icon', name: 'cart' %}
         <span class="cart-count{% if cart.item_count > 0 %} is-visible{% endif %}" data-cart-count>{{ cart.item_count }}</span>
       </button>
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_url | default: '#purchase-apex' }}" class="btn btn--gold btn--header">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
     </div>
   </div>
 </header>
@@ -68,6 +75,17 @@
       "id": "menu",
       "label": "Navigation menu",
       "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Shop Apex"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link"
     }
   ]
 }

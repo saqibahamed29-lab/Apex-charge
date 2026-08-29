@@ -1,6 +1,17 @@
 {
   "sections": {
-    "hero": { "type": "hero" },
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "feature-1": { "type": "feature", "settings": { "icon": "bolt", "title": "Supports Energy & Focus*", "text": "Powered by research-backed ingredients." } },
+        "feature-2": { "type": "feature", "settings": { "icon": "droplet", "title": "Maintains Electrolyte Balance*", "text": "Stay hydrated. Stay sharp." } },
+        "feature-3": { "type": "feature", "settings": { "icon": "flask", "title": "Transparent Formula", "text": "No hidden blends. No proprietary formulas." } },
+        "trust-1": { "type": "trust_item", "settings": { "icon": "check-shield", "label": "Transparent Formula" } },
+        "trust-2": { "type": "trust_item", "settings": { "icon": "microscope", "label": "Research Linked" } },
+        "trust-3": { "type": "trust_item", "settings": { "icon": "leaf", "label": "Clean & Disclosed" } }
+      },
+      "block_order": ["feature-1", "feature-2", "feature-3", "trust-1", "trust-2", "trust-3"]
+    },
     "why-apex": {
       "type": "why-apex",
       "blocks": {
