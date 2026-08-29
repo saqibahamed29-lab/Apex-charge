@@ -58,6 +58,23 @@
       </div>
     </div>
   </div>
+
+  {%- assign highlight_blocks = section.blocks | where: 'type', 'highlight' -%}
+  {%- if highlight_blocks.size > 0 -%}
+    <div class="hero__highlights-wrap wrap">
+      <div class="hero__highlights" data-animate-group>
+        {%- for block in highlight_blocks -%}
+          <div class="hero__highlight" data-animate style="transition-delay: {{ forloop.index0 | times: 60 }}ms;" {{ block.shopify_attributes }}>
+            <span class="hero__highlight-icon">{% render 'icon', name: block.settings.icon %}</span>
+            <span class="hero__highlight-copy">
+              <span class="hero__highlight-title">{{ block.settings.title }}</span>
+              <span class="hero__highlight-text">{{ block.settings.text }}</span>
+            </span>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -183,6 +200,39 @@
           "default": "Transparent Formula"
         }
       ]
+    },
+    {
+      "type": "highlight",
+      "name": "Highlight strip item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "bolt", "label": "Bolt" },
+            { "value": "brain", "label": "Brain" },
+            { "value": "droplet", "label": "Droplet" },
+            { "value": "strawberry", "label": "Strawberry" },
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "flask", "label": "Flask" }
+          ],
+          "default": "bolt"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Clean Energy*"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Supporting text",
+          "default": "No crash. No jitters."
+        }
+      ]
     }
   ],
   "presets": [
@@ -194,7 +244,11 @@
         { "type": "feature", "settings": { "icon": "flask", "title": "Transparent Formula", "text": "No hidden blends. No proprietary formulas." } },
         { "type": "trust_item", "settings": { "icon": "check-shield", "label": "Transparent Formula" } },
         { "type": "trust_item", "settings": { "icon": "microscope", "label": "Research Linked" } },
-        { "type": "trust_item", "settings": { "icon": "leaf", "label": "Clean & Disclosed" } }
+        { "type": "trust_item", "settings": { "icon": "leaf", "label": "Clean & Disclosed" } },
+        { "type": "highlight", "settings": { "icon": "bolt", "title": "Clean Energy*", "text": "No crash. No jitters." } },
+        { "type": "highlight", "settings": { "icon": "brain", "title": "Mental Focus*", "text": "Stay sharp. Stay locked in." } },
+        { "type": "highlight", "settings": { "icon": "droplet", "title": "Hydration Support*", "text": "Electrolytes that work." } },
+        { "type": "highlight", "settings": { "icon": "strawberry", "title": "Great Taste", "text": "Strawberry Shortcake flavor you'll love." } }
       ]
     }
   ]
