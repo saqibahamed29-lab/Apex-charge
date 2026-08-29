@@ -51,9 +51,9 @@
     <div class="hero__visual" data-animate style="transition-delay: 120ms;">
       <div class="hero__visual-frame">
         {%- if section.settings.product_image != blank -%}
-          {{ section.settings.product_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake' }}
+          {{ section.settings.product_image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake, on a marble counter with fresh strawberries and white flowers' }}
         {%- else -%}
-          <img src="{{ 'apex-product-label.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake label" width="1810" height="869" loading="eager" fetchpriority="high">
+          <img src="{{ 'apex-product-lifestyle.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake, on a marble counter with fresh strawberries and white flowers" width="1536" height="1024" loading="eager" fetchpriority="high">
         {%- endif -%}
       </div>
     </div>
@@ -98,7 +98,7 @@
       "type": "image_picker",
       "id": "product_image",
       "label": "Product image",
-      "info": "Defaults to the Apex Energy Powder label artwork. Replace with real product photography once available."
+      "info": "Defaults to the Apex Energy Powder lifestyle photo."
     },
     {
       "type": "text",
