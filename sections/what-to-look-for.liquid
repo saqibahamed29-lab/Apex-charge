@@ -1,0 +1,73 @@
+<section class="section section--paper" id="what-to-look-for">
+  <div class="wrap">
+    <div style="max-width: 640px; margin-bottom: 40px;" data-animate>
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="h-section">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="look-for-grid" data-animate>
+      <div class="look-for-col look-for-col--good">
+        <p class="look-for-col__title">{{ section.settings.good_title }}</p>
+        <ul class="look-for-list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'look_for' -%}
+              <li><span class="look-for-list__icon look-for-list__icon--good">{% render 'icon', name: 'check' %}</span>{{ block.settings.text }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div class="look-for-col look-for-col--avoid">
+        <p class="look-for-col__title">{{ section.settings.avoid_title }}</p>
+        <ul class="look-for-list">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'avoid' -%}
+              <li><span class="look-for-list__icon look-for-list__icon--avoid">{% render 'icon', name: 'cross' %}</span>{{ block.settings.text }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "What to look for",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Before you buy an energy drink" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Know What To Look For" },
+    { "type": "text", "id": "good_title", "label": "\"Look for\" title", "default": "Look For" },
+    { "type": "text", "id": "avoid_title", "label": "\"Avoid\" title", "default": "Avoid" }
+  ],
+  "blocks": [
+    {
+      "type": "look_for",
+      "name": "Look for item",
+      "settings": [{ "type": "text", "id": "text", "label": "Text" }]
+    },
+    {
+      "type": "avoid",
+      "name": "Avoid item",
+      "settings": [{ "type": "text", "id": "text", "label": "Text" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "What to look for",
+      "blocks": [
+        { "type": "look_for", "settings": { "text": "Clean caffeine" } },
+        { "type": "look_for", "settings": { "text": "L-Theanine for focus" } },
+        { "type": "look_for", "settings": { "text": "Electrolytes for hydration" } },
+        { "type": "look_for", "settings": { "text": "B Vitamins" } },
+        { "type": "look_for", "settings": { "text": "No artificial junk" } },
+        { "type": "avoid", "settings": { "text": "Sugar & artificial sweeteners" } },
+        { "type": "avoid", "settings": { "text": "Proprietary blends" } },
+        { "type": "avoid", "settings": { "text": "Under-dosed ingredients" } },
+        { "type": "avoid", "settings": { "text": "Artificial colors & dyes" } },
+        { "type": "avoid", "settings": { "text": "Crash & jitters" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,27 +1,22 @@
 <section class="hero" id="top">
-  <div class="hero__inner">
-    <div class="hero__content-col">
-      <div class="hero__content" data-animate>
-      <span class="hero__ribbon">{{ section.settings.eyebrow }}</span>
-
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <div class="hero__content" data-animate>
       <h1 class="hero__title">
-        <span class="hero__title-line hero__title-line--ink">{{ section.settings.heading_line1 }}</span>
-        <span class="hero__title-line hero__title-line--accent">{{ section.settings.heading_line2 }}</span>
+        <span class="hero__title-line">{{ section.settings.heading_line1 }}</span>
+        <span class="hero__title-line">{{ section.settings.heading_line2 }}</span>
         <span class="hero__title-line hero__title-line--accent">{{ section.settings.heading_line3 }}</span>
       </h1>
 
       <p class="hero__lede">{{ section.settings.lede }}</p>
 
       {%- if section.blocks.size > 0 -%}
-        <ul class="hero__features" data-animate-group>
+        <ul class="hero__benefits" data-animate-group>
           {%- for block in section.blocks -%}
-            {%- if block.type == 'feature' -%}
-              <li class="hero__feature" data-animate {{ block.shopify_attributes }}>
-                <span class="hero__feature-icon">{% render 'icon', name: block.settings.icon %}</span>
-                <span class="hero__feature-copy">
-                  <span class="hero__feature-title">{{ block.settings.title }}</span>
-                  <span class="hero__feature-text">{{ block.settings.text }}</span>
-                </span>
+            {%- if block.type == 'benefit' -%}
+              <li class="hero__benefit" data-animate {{ block.shopify_attributes }}>
+                <span class="hero__benefit-icon">{% render 'icon', name: block.settings.icon %}</span>
+                <span class="hero__benefit-label">{{ block.settings.label }}</span>
               </li>
             {%- endif -%}
           {%- endfor -%}
@@ -29,52 +24,38 @@
       {%- endif -%}
 
       <div class="hero__ctas">
-        <a href="{{ section.settings.primary_cta_url | default: '#purchase-apex' }}" class="btn btn--gold">{{ section.settings.primary_cta_label }}</a>
-        <a href="{{ section.settings.secondary_cta_url | default: '#comparison' }}" class="btn btn--outline-navy">{{ section.settings.secondary_cta_label }}</a>
+        <a href="{{ section.settings.primary_cta_url | default: '#purchase-apex' }}" class="btn btn--lime">
+          {{ section.settings.primary_cta_label }} {% render 'icon', name: 'bolt' %}
+        </a>
+      </div>
+      <p class="hero__shipping-note">{{ section.settings.shipping_note }}</p>
+    </div>
+
+    <div class="hero__visual" data-animate style="transition-delay: 120ms;">
+      <div class="hero__visual-glow" aria-hidden="true"></div>
+      <div class="hero__visual-bolt" aria-hidden="true">{% render 'icon', name: 'bolt' %}</div>
+      <div class="hero__visual-frame">
+        {%- if section.settings.product_image != blank -%}
+          {{ section.settings.product_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake' }}
+        {%- else -%}
+          <img src="{{ 'apex-product-lifestyle.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake" width="1536" height="1024" loading="eager" fetchpriority="high">
+        {%- endif -%}
       </div>
 
       {%- if section.blocks.size > 0 -%}
-        <div class="hero__trust">
+        <div class="hero__stats" data-animate-group>
           {%- for block in section.blocks -%}
-            {%- if block.type == 'trust_item' -%}
-              <div class="hero__trust-item" {{ block.shopify_attributes }}>
-                <span class="hero__trust-icon">{% render 'icon', name: block.settings.icon %}</span>
-                <span class="hero__trust-label">{{ block.settings.label }}</span>
+            {%- if block.type == 'stat' -%}
+              <div class="hero__stat hero__stat--{{ forloop.index0 }}" data-animate {{ block.shopify_attributes }}>
+                <span class="hero__stat-value">{{ block.settings.value }}</span>
+                <span class="hero__stat-label">{{ block.settings.label }}</span>
               </div>
             {%- endif -%}
           {%- endfor -%}
         </div>
       {%- endif -%}
     </div>
-    </div>
-
-    <div class="hero__visual" data-animate style="transition-delay: 120ms;">
-      <div class="hero__visual-frame">
-        {%- if section.settings.product_image != blank -%}
-          {{ section.settings.product_image | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake, on a marble counter with fresh strawberries and white flowers' }}
-        {%- else -%}
-          <img src="{{ 'apex-product-lifestyle.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake, on a marble counter with fresh strawberries and white flowers" width="1536" height="1024" loading="eager" fetchpriority="high">
-        {%- endif -%}
-      </div>
-    </div>
   </div>
-
-  {%- assign highlight_blocks = section.blocks | where: 'type', 'highlight' -%}
-  {%- if highlight_blocks.size > 0 -%}
-    <div class="hero__highlights-wrap wrap">
-      <div class="hero__highlights" data-animate-group>
-        {%- for block in highlight_blocks -%}
-          <div class="hero__highlight" data-animate style="transition-delay: {{ forloop.index0 | times: 60 }}ms;" {{ block.shopify_attributes }}>
-            <span class="hero__highlight-icon">{% render 'icon', name: block.settings.icon %}</span>
-            <span class="hero__highlight-copy">
-              <span class="hero__highlight-title">{{ block.settings.title }}</span>
-              <span class="hero__highlight-text">{{ block.settings.text }}</span>
-            </span>
-          </div>
-        {%- endfor -%}
-      </div>
-    </div>
-  {%- endif -%}
 </section>
 
 {% schema %}
@@ -83,33 +64,27 @@
   "settings": [
     {
       "type": "text",
-      "id": "eyebrow",
-      "label": "Ribbon badge",
-      "default": "Fuel · Focus · Performance"
-    },
-    {
-      "type": "text",
       "id": "heading_line1",
-      "label": "Heading line 1 (ink)",
-      "default": "Energy + Focus,"
+      "label": "Heading line 1",
+      "default": "Clean Energy."
     },
     {
       "type": "text",
       "id": "heading_line2",
-      "label": "Heading line 2 (accent)",
-      "default": "Formulated"
+      "label": "Heading line 2",
+      "default": "Sharp Focus."
     },
     {
       "type": "text",
       "id": "heading_line3",
       "label": "Heading line 3 (accent)",
-      "default": "Differently."
+      "default": "No Crash."
     },
     {
       "type": "textarea",
       "id": "lede",
       "label": "Supporting line",
-      "default": "Clean ingredients. Transparent formula. Real results."
+      "default": "A scientifically formulated energy powder that powers your body and mind."
     },
     {
       "type": "image_picker",
@@ -121,7 +96,7 @@
       "type": "text",
       "id": "primary_cta_label",
       "label": "Primary button label",
-      "default": "Shop Apex"
+      "default": "Shop Apex Charge"
     },
     {
       "type": "url",
@@ -130,81 +105,16 @@
     },
     {
       "type": "text",
-      "id": "secondary_cta_label",
-      "label": "Secondary button label",
-      "default": "Compare"
-    },
-    {
-      "type": "url",
-      "id": "secondary_cta_url",
-      "label": "Secondary button link"
+      "id": "shipping_note",
+      "label": "Note below CTA",
+      "default": "Free shipping on orders $75+"
     }
   ],
   "blocks": [
     {
-      "type": "feature",
-      "name": "Feature row",
+      "type": "benefit",
+      "name": "Benefit indicator",
       "limit": 3,
-      "settings": [
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "options": [
-            { "value": "bolt", "label": "Bolt" },
-            { "value": "droplet", "label": "Droplet" },
-            { "value": "flask", "label": "Flask" },
-            { "value": "leaf", "label": "Leaf" },
-            { "value": "check-shield", "label": "Shield check" },
-            { "value": "microscope", "label": "Microscope" }
-          ],
-          "default": "bolt"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Supports Energy & Focus*"
-        },
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Supporting text",
-          "default": "Powered by research-backed ingredients."
-        }
-      ]
-    },
-    {
-      "type": "trust_item",
-      "name": "Trust bar item",
-      "limit": 3,
-      "settings": [
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "options": [
-            { "value": "check-shield", "label": "Shield check" },
-            { "value": "microscope", "label": "Microscope" },
-            { "value": "leaf", "label": "Leaf" },
-            { "value": "droplet", "label": "Droplet" },
-            { "value": "flask", "label": "Flask" },
-            { "value": "bolt", "label": "Bolt" }
-          ],
-          "default": "check-shield"
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label",
-          "default": "Transparent Formula"
-        }
-      ]
-    },
-    {
-      "type": "highlight",
-      "name": "Highlight strip item",
-      "limit": 4,
       "settings": [
         {
           "type": "select",
@@ -214,24 +124,20 @@
             { "value": "bolt", "label": "Bolt" },
             { "value": "brain", "label": "Brain" },
             { "value": "droplet", "label": "Droplet" },
-            { "value": "strawberry", "label": "Strawberry" },
-            { "value": "leaf", "label": "Leaf" },
-            { "value": "flask", "label": "Flask" }
+            { "value": "check-shield", "label": "Shield check" }
           ],
           "default": "bolt"
         },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Clean Energy*"
-        },
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Supporting text",
-          "default": "No crash. No jitters."
-        }
+        { "type": "text", "id": "label", "label": "Label", "default": "Clean Energy" }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Floating stat",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "200mg" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Clean Caffeine" }
       ]
     }
   ],
@@ -239,16 +145,13 @@
     {
       "name": "Hero",
       "blocks": [
-        { "type": "feature", "settings": { "icon": "bolt", "title": "Supports Energy & Focus*", "text": "Powered by research-backed ingredients." } },
-        { "type": "feature", "settings": { "icon": "droplet", "title": "Maintains Electrolyte Balance*", "text": "Stay hydrated. Stay sharp." } },
-        { "type": "feature", "settings": { "icon": "flask", "title": "Transparent Formula", "text": "No hidden blends. No proprietary formulas." } },
-        { "type": "trust_item", "settings": { "icon": "check-shield", "label": "Transparent Formula" } },
-        { "type": "trust_item", "settings": { "icon": "microscope", "label": "Research Linked" } },
-        { "type": "trust_item", "settings": { "icon": "leaf", "label": "Clean & Disclosed" } },
-        { "type": "highlight", "settings": { "icon": "bolt", "title": "Clean Energy*", "text": "No crash. No jitters." } },
-        { "type": "highlight", "settings": { "icon": "brain", "title": "Mental Focus*", "text": "Stay sharp. Stay locked in." } },
-        { "type": "highlight", "settings": { "icon": "droplet", "title": "Hydration Support*", "text": "Electrolytes that work." } },
-        { "type": "highlight", "settings": { "icon": "strawberry", "title": "Great Taste", "text": "Strawberry Shortcake flavor you'll love." } }
+        { "type": "benefit", "settings": { "icon": "bolt", "label": "Clean Energy" } },
+        { "type": "benefit", "settings": { "icon": "brain", "label": "Laser Focus" } },
+        { "type": "benefit", "settings": { "icon": "droplet", "label": "Hydration &amp; Electrolytes" } },
+        { "type": "stat", "settings": { "value": "200mg", "label": "Clean Caffeine" } },
+        { "type": "stat", "settings": { "value": "100mg", "label": "L-Theanine" } },
+        { "type": "stat", "settings": { "value": "20", "label": "Calories Per Serving" } },
+        { "type": "stat", "settings": { "value": "0", "label": "Sugar" } }
       ]
     }
   ]

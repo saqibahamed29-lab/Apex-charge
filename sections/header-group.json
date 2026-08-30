@@ -2,9 +2,18 @@
   "type": "header",
   "name": "Header",
   "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "icon": "truck", "text": "Free shipping on orders $75+" } },
+        "item-2": { "type": "item", "settings": { "icon": "guarantee", "text": "90 day money back guarantee" } },
+        "item-3": { "type": "item", "settings": { "icon": "none", "text": "Made in the USA" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3"]
+    },
     "header": {
       "type": "header"
     }
   },
-  "order": ["header"]
+  "order": ["announcement-bar", "header"]
 }
