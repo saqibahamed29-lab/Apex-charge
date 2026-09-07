@@ -2,10 +2,13 @@
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="wrap hero__inner">
     <div class="hero__content" data-animate>
+      {%- if section.settings.kicker != blank -%}
+        <span class="hero__kicker">{{ section.settings.kicker }}</span>
+      {%- endif -%}
       <h1 class="hero__title">
-        <span class="hero__title-line">{{ section.settings.heading_line1 }}</span>
-        <span class="hero__title-line">{{ section.settings.heading_line2 }}</span>
-        <span class="hero__title-line hero__title-line--accent">{{ section.settings.heading_line3 }}</span>
+        {%- if section.settings.heading_line1 != blank -%}<span class="hero__title-line">{{ section.settings.heading_line1 }}</span>{%- endif -%}
+        {%- if section.settings.heading_line2 != blank -%}<span class="hero__title-line{% if section.settings.heading_line3 == blank %} hero__title-line--accent{% endif %}">{{ section.settings.heading_line2 }}</span>{%- endif -%}
+        {%- if section.settings.heading_line3 != blank -%}<span class="hero__title-line hero__title-line--accent">{{ section.settings.heading_line3 }}</span>{%- endif -%}
       </h1>
 
       <p class="hero__lede">{{ section.settings.lede }}</p>
@@ -64,27 +67,33 @@
   "settings": [
     {
       "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "For the moments that matter"
+    },
+    {
+      "type": "text",
       "id": "heading_line1",
       "label": "Heading line 1",
-      "default": "Clean Energy."
+      "default": "Built For The"
     },
     {
       "type": "text",
       "id": "heading_line2",
-      "label": "Heading line 2",
-      "default": "Sharp Focus."
+      "label": "Heading line 2 (accent if line 3 is blank)",
+      "default": "Flow State."
     },
     {
       "type": "text",
       "id": "heading_line3",
-      "label": "Heading line 3 (accent)",
-      "default": "No Crash."
+      "label": "Heading line 3 (accent, optional)",
+      "default": ""
     },
     {
       "type": "textarea",
       "id": "lede",
       "label": "Supporting line",
-      "default": "A scientifically formulated energy powder that powers your body and mind."
+      "default": "High energy. Deep focus. Smooth, sustained energy. A purposeful energy formula with 200mg caffeine, 100mg L-theanine and 1,000mg taurine — designed to help you feel energized, focused and ready to lock in."
     },
     {
       "type": "image_picker",
@@ -96,7 +105,7 @@
       "type": "text",
       "id": "primary_cta_label",
       "label": "Primary button label",
-      "default": "Shop Apex Charge"
+      "default": "Get Into Flow"
     },
     {
       "type": "url",
@@ -107,7 +116,7 @@
       "type": "text",
       "id": "shipping_note",
       "label": "Note below CTA",
-      "default": "Free shipping on orders $75+"
+      "default": "20 Servings · Strawberry Shortcake"
     }
   ],
   "blocks": [
@@ -145,13 +154,10 @@
     {
       "name": "Hero",
       "blocks": [
-        { "type": "benefit", "settings": { "icon": "bolt", "label": "Clean Energy" } },
-        { "type": "benefit", "settings": { "icon": "brain", "label": "Laser Focus" } },
-        { "type": "benefit", "settings": { "icon": "droplet", "label": "Hydration &amp; Electrolytes" } },
-        { "type": "stat", "settings": { "value": "200mg", "label": "Clean Caffeine" } },
+        { "type": "stat", "settings": { "value": "200mg", "label": "Caffeine" } },
         { "type": "stat", "settings": { "value": "100mg", "label": "L-Theanine" } },
-        { "type": "stat", "settings": { "value": "20", "label": "Calories Per Serving" } },
-        { "type": "stat", "settings": { "value": "0", "label": "Sugar" } }
+        { "type": "stat", "settings": { "value": "1,000mg", "label": "Taurine" } },
+        { "type": "stat", "settings": { "value": "0g", "label": "Sugar" } }
       ]
     }
   ]

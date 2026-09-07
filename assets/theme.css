@@ -331,6 +331,12 @@ html.no-js [data-animate] { opacity: 1; transform: none; }
 
 .hero__content { max-width: 560px; min-width: 0; }
 
+.hero__kicker {
+  display: inline-block; margin-bottom: 14px;
+  font-family: var(--font-ui); font-weight: 700; font-size: 12px;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-lime);
+}
+
 .hero__title { margin-bottom: 22px; }
 .hero__title-line {
   display: block;
@@ -435,6 +441,23 @@ html.no-js [data-animate] { opacity: 1; transform: none; }
 .check5__cta { margin-top: 36px; }
 
 /* ==========================================================================
+   Trust strip (secondary, below hero)
+   ========================================================================== */
+.trust-strip-2 { background: var(--color-black-soft); border-bottom: 1px solid var(--color-line-on-dark); }
+.trust-strip-2__inner {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 10px clamp(20px, 5vw, 48px);
+  padding-block: 18px;
+}
+.trust-strip-2__item {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-ui); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-text-on-dark-muted);
+}
+.trust-strip-2__icon { color: var(--color-lime); flex-shrink: 0; }
+.trust-strip-2__icon svg { width: 16px; height: 16px; }
+
+/* ==========================================================================
    What to look for — look for / avoid
    ========================================================================== */
 .look-for-grid { display: grid; grid-template-columns: 1fr; gap: 2px; background: var(--color-line); border: 1px solid var(--color-line); border-radius: var(--radius-md); overflow: hidden; }
@@ -449,6 +472,24 @@ html.no-js [data-animate] { opacity: 1; transform: none; }
 .look-for-list__icon svg { width: 13px; height: 13px; }
 .look-for-list__icon--good { background: rgba(198,255,77,0.16); color: var(--color-lime-deep); }
 .look-for-list__icon--avoid { background: rgba(181,119,42,0.14); color: #B5772A; }
+
+/* ==========================================================================
+   How to use — numbered steps
+   ========================================================================== */
+.how-to-grid { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; }
+.how-to-step { flex: 1 1 220px; min-width: 200px; position: relative; }
+.how-to-step__num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 999px; background: var(--color-lime); color: var(--color-lime-ink);
+  font-family: var(--font-ui); font-weight: 700; font-size: 13px; margin-bottom: 16px;
+}
+.how-to-step__icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 1.5px solid var(--color-line); color: var(--color-lime-deep); margin-bottom: 14px; }
+.how-to-step__icon svg { width: 20px; height: 20px; }
+.how-to-step__title { font-family: var(--font-ui); font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 6px; }
+.how-to-step__desc { font-size: 14px; color: var(--color-text-muted); max-width: 32ch; }
+.how-to-step__arrow { display: none; color: var(--color-line); flex-shrink: 0; align-self: center; margin-top: 30px; }
+.how-to-step__arrow svg { width: 22px; height: 22px; }
+@media (min-width: 720px) { .how-to-step__arrow { display: block; } }
 
 /* ==========================================================================
    Comparison table
