@@ -1,42 +1,62 @@
-<section class="hero" id="top">
-  <div class="wrap hero__inner">
-    <div class="hero__content" data-animate>
-      <span class="hero__kicker">{{ section.settings.eyebrow }}</span>
+<section class="pdp-hero" id="top">
+  <div class="wrap pdp-hero__inner">
+    <div class="pdp-hero__media" data-animate>
+      <h1 class="pdp-hero__title">{{ section.settings.heading }}</h1>
 
-      <h1 class="h-display hero__title">
-        {{ section.settings.heading_line1 }}<br>
-        <em>{{ section.settings.heading_line2 }}</em>
-      </h1>
+      {%- if section.settings.badge_text != blank -%}
+        <span class="pdp-hero__badge">{{ section.settings.badge_text }}</span>
+      {%- endif -%}
 
-      <p class="lede hero__lede">{{ section.settings.lede }}</p>
-
-      <div class="hero__ctas">
-        <a href="{{ section.settings.primary_cta_url | default: '#purchase-apex' }}" class="btn btn--lime">{{ section.settings.primary_cta_label }}</a>
-        <a href="{{ section.settings.secondary_cta_url | default: '#comparison' }}" class="btn btn--outline">
-          {{ section.settings.secondary_cta_label }}
-          {% render 'icon', name: 'chevron-right' %}
-        </a>
-      </div>
-    </div>
-
-    <div class="hero__visual" data-animate style="transition-delay: 120ms;">
-      <div class="hero__visual-glow" aria-hidden="true"></div>
-      <div class="hero__visual-ring" aria-hidden="true"></div>
-      <div class="hero__visual-frame">
+      <div class="pdp-hero__image">
         {%- if section.settings.product_image != blank -%}
-          {{ section.settings.product_image | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake' }}
+          {{ section.settings.product_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', alt: section.settings.product_image.alt | default: 'Apex Energy Powder — Strawberry Shortcake' }}
         {%- else -%}
-          <img src="{{ 'apex-product-label.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake label" width="1810" height="869" loading="eager" fetchpriority="high">
+          <img src="{{ 'apex-product-lifestyle.png' | asset_url }}" alt="Apex Energy Powder — Strawberry Shortcake" width="1536" height="1024" loading="eager" fetchpriority="high">
         {%- endif -%}
       </div>
-    </div>
-  </div>
 
-  <div class="trust-strip">
-    <div class="wrap pill-row">
-      <span class="pill">{% render 'icon', name: 'flask' %}Transparent Formula</span>
-      <span class="pill">{% render 'icon', name: 'check-shield' %}Research-Linked</span>
-      <span class="pill">{% render 'icon', name: 'dose' %}Clearly Disclosed</span>
+      {%- if section.blocks.size > 0 -%}
+        <ul class="pdp-hero__pills" data-animate-group>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'pill' -%}
+              <li class="pdp-hero__pill" data-animate {{ block.shopify_attributes }}>
+                {% render 'icon', name: block.settings.icon %} {{ block.settings.label }}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="pdp-hero__buybox" data-animate style="transition-delay: 100ms;">
+      <span class="pdp-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="pdp-hero__product-name">{{ section.settings.product_name }}</h2>
+      {%- if section.settings.flavor != blank -%}
+        <p class="pdp-hero__flavor">Flavor: {{ section.settings.flavor }}</p>
+      {%- endif -%}
+      <p class="pdp-hero__desc">{{ section.settings.description }}</p>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="pdp-hero__features">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <div class="pdp-hero__feature" {{ block.shopify_attributes }}>
+                <span class="pdp-hero__feature-icon">{% render 'icon', name: block.settings.icon %}</span>
+                <span class="pdp-hero__feature-title">{{ block.settings.title }}</span>
+                <span class="pdp-hero__feature-text">{{ block.settings.text }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="pdp-hero__price-row">
+        <span class="pdp-hero__price">{{ section.settings.price }}</span>
+        {%- if section.settings.price_note != blank -%}<span class="pdp-hero__price-note">{{ section.settings.price_note }}</span>{%- endif -%}
+      </div>
+
+      <a href="{{ section.settings.primary_cta_url | default: '#purchase-apex' }}" class="btn pdp-hero__cta">{{ section.settings.primary_cta_label }}</a>
+      <p class="pdp-hero__guarantee">{% render 'icon', name: 'check-shield' %} {{ section.settings.guarantee_text }}</p>
     </div>
   </div>
 </section>
@@ -47,60 +67,128 @@
   "settings": [
     {
       "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "Apex Energy Powder"
+      "id": "heading",
+      "label": "Media panel headline",
+      "default": "The Morning Charge Of High Performers"
     },
     {
       "type": "text",
-      "id": "heading_line1",
-      "label": "Heading line 1",
-      "default": "Energy + Focus,"
-    },
-    {
-      "type": "text",
-      "id": "heading_line2",
-      "label": "Heading line 2 (emphasized)",
-      "default": "Formulated Differently."
-    },
-    {
-      "type": "textarea",
-      "id": "lede",
-      "label": "Supporting line",
-      "default": "We didn't set out to build another energy drink. Apex is a caffeine + L-theanine formula with every ingredient and amount disclosed on the label — nothing hidden behind a proprietary blend."
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "200mg Caffeine + 100mg L-Theanine"
     },
     {
       "type": "image_picker",
       "id": "product_image",
       "label": "Product image",
-      "info": "Defaults to the Apex Energy Powder label artwork. Replace with the real Shopify product image/render once available."
+      "info": "Defaults to the Apex Energy Powder lifestyle photo."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Buy box eyebrow",
+      "default": "Apex Charge Labs™"
+    },
+    {
+      "type": "text",
+      "id": "product_name",
+      "label": "Product name",
+      "default": "Energy Powder"
+    },
+    {
+      "type": "text",
+      "id": "flavor",
+      "label": "Flavor line",
+      "default": "Strawberry Shortcake"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "A purposeful energy formula built to sharpen your focus and power your day &mdash; before the crash. With 200mg caffeine, 100mg L-theanine and 1,000mg taurine, every dose is disclosed on the label."
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$69.00"
+    },
+    {
+      "type": "text",
+      "id": "price_note",
+      "label": "Price note",
+      "default": "20 servings &middot; $3.45 / serving"
     },
     {
       "type": "text",
       "id": "primary_cta_label",
-      "label": "Primary button label",
-      "default": "Shop Apex"
+      "label": "CTA label",
+      "default": "Order Now"
     },
     {
       "type": "url",
       "id": "primary_cta_url",
-      "label": "Primary button link"
+      "label": "CTA link"
     },
     {
       "type": "text",
-      "id": "secondary_cta_label",
-      "label": "Secondary button label",
-      "default": "Compare"
+      "id": "guarantee_text",
+      "label": "Guarantee line",
+      "default": "90-day money-back guarantee. Secure checkout."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pill",
+      "name": "Media pill",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "bolt", "label": "Bolt" },
+            { "value": "brain", "label": "Brain" },
+            { "value": "droplet", "label": "Droplet" }
+          ],
+          "default": "bolt"
+        },
+        { "type": "text", "id": "label", "label": "Label", "default": "Energy" }
+      ]
     },
     {
-      "type": "url",
-      "id": "secondary_cta_url",
-      "label": "Secondary button link"
+      "type": "feature",
+      "name": "Buy box feature",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "brain", "label": "Brain" },
+            { "value": "bolt", "label": "Bolt" },
+            { "value": "droplet", "label": "Droplet" }
+          ],
+          "default": "brain"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Focus" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Cut distractions and zero in on what matters." }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Hero"
+      "name": "Hero",
+      "blocks": [
+        { "type": "pill", "settings": { "icon": "bolt", "label": "Energy" } },
+        { "type": "pill", "settings": { "icon": "brain", "label": "Focus" } },
+        { "type": "pill", "settings": { "icon": "droplet", "label": "Hydration" } },
+        { "type": "feature", "settings": { "icon": "brain", "title": "Focus", "text": "Cut distractions and zero in on what matters." } },
+        { "type": "feature", "settings": { "icon": "bolt", "title": "Energy", "text": "Rise strong, move with purpose, and meet the day fully alive." } },
+        { "type": "feature", "settings": { "icon": "droplet", "title": "Hydration", "text": "Electrolytes that support performance." } }
+      ]
     }
   ]
 }

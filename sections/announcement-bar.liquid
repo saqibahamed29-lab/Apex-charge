@@ -1,0 +1,48 @@
+<div class="announcement-bar">
+  <div class="wrap announcement-bar__inner">
+    {%- for block in section.blocks -%}
+      <span class="announcement-bar__item" {{ block.shopify_attributes }}>
+        {%- if block.settings.icon != 'none' -%}{% render 'icon', name: block.settings.icon %}{%- endif -%}
+        {{ block.settings.text }}
+      </span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "guarantee", "label": "Guarantee" },
+            { "value": "check-shield", "label": "Shield check" }
+          ],
+          "default": "none"
+        },
+        { "type": "text", "id": "text", "label": "Text", "default": "Free shipping on orders $75+" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "truck", "text": "Free shipping on orders $75+" } },
+        { "type": "item", "settings": { "icon": "guarantee", "text": "90 day money back guarantee" } },
+        { "type": "item", "settings": { "icon": "none", "text": "Made in the USA" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

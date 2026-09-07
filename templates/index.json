@@ -1,6 +1,25 @@
 {
   "sections": {
-    "hero": { "type": "hero" },
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "stat-1": { "type": "stat", "settings": { "value": "200mg", "label": "Caffeine" } },
+        "stat-2": { "type": "stat", "settings": { "value": "100mg", "label": "L-Theanine" } },
+        "stat-3": { "type": "stat", "settings": { "value": "1,000mg", "label": "Taurine" } },
+        "stat-4": { "type": "stat", "settings": { "value": "0g", "label": "Sugar" } }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"]
+    },
+    "hero-trust-strip": {
+      "type": "trust-strip",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "icon": "flask", "text": "Transparent Formula" } },
+        "t2": { "type": "item", "settings": { "icon": "check-shield", "text": "Third-Party Tested" } },
+        "t3": { "type": "item", "settings": { "icon": "dose", "text": "20 Servings" } },
+        "t4": { "type": "item", "settings": { "icon": "none", "text": "Made in the USA" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"]
+    },
     "why-apex": {
       "type": "why-apex",
       "blocks": {
@@ -23,7 +42,32 @@
       },
       "block_order": ["item-1", "item-2", "item-3", "item-4", "item-5"]
     },
+    "what-to-look-for": {
+      "type": "what-to-look-for",
+      "blocks": {
+        "look-1": { "type": "look_for", "settings": { "text": "Clean caffeine" } },
+        "look-2": { "type": "look_for", "settings": { "text": "L-Theanine for focus" } },
+        "look-3": { "type": "look_for", "settings": { "text": "Electrolytes for hydration" } },
+        "look-4": { "type": "look_for", "settings": { "text": "B Vitamins" } },
+        "look-5": { "type": "look_for", "settings": { "text": "No artificial junk" } },
+        "avoid-1": { "type": "avoid", "settings": { "text": "Sugar & artificial sweeteners" } },
+        "avoid-2": { "type": "avoid", "settings": { "text": "Proprietary blends" } },
+        "avoid-3": { "type": "avoid", "settings": { "text": "Under-dosed ingredients" } },
+        "avoid-4": { "type": "avoid", "settings": { "text": "Artificial colors & dyes" } },
+        "avoid-5": { "type": "avoid", "settings": { "text": "Crash & jitters" } }
+      },
+      "block_order": ["look-1", "look-2", "look-3", "look-4", "look-5", "avoid-1", "avoid-2", "avoid-3", "avoid-4", "avoid-5"]
+    },
     "comparison-table": { "type": "comparison-table" },
+    "how-to-use": {
+      "type": "how-to-use",
+      "blocks": {
+        "step-1": { "type": "step", "settings": { "icon": "dose", "title": "Scoop", "description": "Use 2 scoops (7g) per serving." } },
+        "step-2": { "type": "step", "settings": { "icon": "droplet", "title": "Mix", "description": "Add to 10–16 oz of cold water." } },
+        "step-3": { "type": "step", "settings": { "icon": "bolt", "title": "Enjoy", "description": "Take before work, study, training or anytime you need to lock in." } }
+      },
+      "block_order": ["step-1", "step-2", "step-3"]
+    },
     "research": {
       "type": "research",
       "blocks": {
@@ -48,10 +92,10 @@
     "apex-standard": {
       "type": "apex-standard",
       "blocks": {
-        "pillar-1": { "type": "pillar", "settings": { "icon": "no-blend", "title": "No Mystery Blends" } },
-        "pillar-2": { "type": "pillar", "settings": { "icon": "star-off", "title": "No Made-Up Reviews" } },
-        "pillar-3": { "type": "pillar", "settings": { "icon": "no-magic", "title": "No Magic Claims" } },
-        "pillar-4": { "type": "pillar", "settings": { "icon": "dose", "title": "No Hidden Doses" } }
+        "pillar-1": { "type": "pillar", "settings": { "title": "No Mystery Blends" } },
+        "pillar-2": { "type": "pillar", "settings": { "title": "No Made-Up Reviews" } },
+        "pillar-3": { "type": "pillar", "settings": { "title": "No Magic Claims" } },
+        "pillar-4": { "type": "pillar", "settings": { "title": "No Hidden Doses" } }
       },
       "block_order": ["pillar-1", "pillar-2", "pillar-3", "pillar-4"]
     },
@@ -93,10 +137,13 @@
   },
   "order": [
     "hero",
+    "hero-trust-strip",
     "why-apex",
     "check-five-things",
+    "what-to-look-for",
     "comparison-table",
     "research",
+    "how-to-use",
     "focused-moments",
     "apex-standard",
     "ugc-video",

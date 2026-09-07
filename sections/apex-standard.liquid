@@ -1,10 +1,16 @@
-<section class="section section--tight standard-strip">
+<section class="section standard-strip-v2">
   <div class="wrap">
-    <div class="standard-grid" data-animate>
+    <div class="standard-v2__head" data-animate>
+      <span class="mono-tag">{{ section.settings.eyebrow }}</span>
+      <h2 class="h-display standard-v2__heading">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="standard-v2__list" data-animate-group>
       {%- for block in section.blocks -%}
-        <div class="standard-card" {{ block.shopify_attributes }}>
-          <div class="standard-card__icon">{% render 'icon', name: block.settings.icon %}</div>
-          <p class="standard-card__title">{{ block.settings.title }}</p>
+        <div class="standard-v2__row" data-animate {{ block.shopify_attributes }}>
+          <span class="standard-v2__no">{{ forloop.index | prepend: '0' }}</span>
+          <span class="standard-v2__title">{{ block.settings.title }}</span>
+          <span class="standard-v2__mark">{% render 'icon', name: 'cross' %}</span>
         </div>
       {%- endfor -%}
     </div>
@@ -14,24 +20,15 @@
 {% schema %}
 {
   "name": "The Apex Standard",
-  "settings": [],
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Apex Standard" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "No Shortcuts. Only Standards." }
+  ],
   "blocks": [
     {
       "type": "pillar",
       "name": "Pillar",
       "settings": [
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "options": [
-            { "value": "no-blend", "label": "No blend" },
-            { "value": "star-off", "label": "Star off" },
-            { "value": "no-magic", "label": "No magic" },
-            { "value": "dose", "label": "Dose" }
-          ],
-          "default": "no-blend"
-        },
         { "type": "text", "id": "title", "label": "Title" }
       ]
     }
@@ -40,10 +37,10 @@
     {
       "name": "The Apex Standard",
       "blocks": [
-        { "type": "pillar", "settings": { "icon": "no-blend", "title": "No Mystery Blends" } },
-        { "type": "pillar", "settings": { "icon": "star-off", "title": "No Made-Up Reviews" } },
-        { "type": "pillar", "settings": { "icon": "no-magic", "title": "No Magic Claims" } },
-        { "type": "pillar", "settings": { "icon": "dose", "title": "No Hidden Doses" } }
+        { "type": "pillar", "settings": { "title": "No Mystery Blends" } },
+        { "type": "pillar", "settings": { "title": "No Made-Up Reviews" } },
+        { "type": "pillar", "settings": { "title": "No Magic Claims" } },
+        { "type": "pillar", "settings": { "title": "No Hidden Doses" } }
       ]
     }
   ]

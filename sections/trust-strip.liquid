@@ -1,0 +1,52 @@
+<div class="trust-strip-2">
+  <div class="wrap trust-strip-2__inner" data-animate-group>
+    {%- for block in section.blocks -%}
+      <div class="trust-strip-2__item" data-animate {{ block.shopify_attributes }}>
+        {%- if block.settings.icon != 'none' -%}<span class="trust-strip-2__icon">{% render 'icon', name: block.settings.icon %}</span>{%- endif -%}
+        <span>{{ block.settings.text }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust strip",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "flask", "label": "Flask" },
+            { "value": "check-shield", "label": "Shield check" },
+            { "value": "dose", "label": "Dose" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "guarantee", "label": "Guarantee" },
+            { "value": "refresh", "label": "Refresh" }
+          ],
+          "default": "check-shield"
+        },
+        { "type": "text", "id": "text", "label": "Text", "default": "Transparent Formula" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust strip",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "flask", "text": "Transparent Formula" } },
+        { "type": "item", "settings": { "icon": "check-shield", "text": "Third-Party Tested" } },
+        { "type": "item", "settings": { "icon": "dose", "text": "20 Servings" } },
+        { "type": "item", "settings": { "icon": "none", "text": "Made in the USA" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

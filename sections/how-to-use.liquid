@@ -1,0 +1,61 @@
+<section class="section section--white" id="how-to-use">
+  <div class="wrap">
+    <div style="max-width: 640px; margin-bottom: 40px;" data-animate>
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="h-section">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="how-to-grid" data-animate-group>
+      {%- for block in section.blocks -%}
+        <div class="how-to-step" data-animate {{ block.shopify_attributes }}>
+          <span class="how-to-step__num">{{ forloop.index }}</span>
+          <div class="how-to-step__icon">{% render 'icon', name: block.settings.icon %}</div>
+          <p class="how-to-step__title">{{ block.settings.title }}</p>
+          <p class="how-to-step__desc">{{ block.settings.description }}</p>
+        </div>
+        {%- unless forloop.last -%}<span class="how-to-step__arrow" aria-hidden="true">{% render 'icon', name: 'chevron-right' %}</span>{%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How to use",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Your flow routine" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Simple To Use. Easy To Love." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "dose", "label": "Scoop" },
+            { "value": "droplet", "label": "Mix" },
+            { "value": "bolt", "label": "Enjoy" }
+          ],
+          "default": "dose"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Scoop" },
+        { "type": "text", "id": "description", "label": "Description", "default": "Use 2 scoops (7g) per serving." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How to use",
+      "blocks": [
+        { "type": "step", "settings": { "icon": "dose", "title": "Scoop", "description": "Use 2 scoops (7g) per serving." } },
+        { "type": "step", "settings": { "icon": "droplet", "title": "Mix", "description": "Add to 10–16 oz of cold water." } },
+        { "type": "step", "settings": { "icon": "bolt", "title": "Enjoy", "description": "Take before work, study, training or anytime you need to lock in." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,24 +1,23 @@
-<section class="section section--white" id="why-apex">
-  <div class="wrap why-apex__grid">
-    <div class="why-apex__copy" data-animate>
-      <span class="eyebrow">Why Apex?</span>
-      <h2 class="h-section">{{ section.settings.heading }}</h2>
-      <div style="margin-top: 20px;">
-        {{ section.settings.body }}
-      </div>
-      <div class="why-apex__cta">
-        <a href="{{ section.settings.cta_url | default: '#the-research' }}" class="btn btn--ghost">
+<section class="section section--dark why-apex-v2" id="why-apex">
+  <div class="wrap why-apex-v2__grid">
+    <div class="why-apex-v2__copy" data-animate>
+      <span class="mono-tag why-apex-v2__tag">Spec 01 &mdash; Formula</span>
+      <h2 class="h-display why-apex-v2__heading">{{ section.settings.heading }}</h2>
+      <div class="why-apex-v2__body">{{ section.settings.body }}</div>
+      <div class="why-apex-v2__cta">
+        <a href="{{ section.settings.cta_url | default: '#the-research' }}" class="btn btn--outline">
           {{ section.settings.cta_label }}
           {% render 'icon', name: 'chevron-right' %}
         </a>
       </div>
     </div>
 
-    <div class="formula-grid" data-animate style="transition-delay: 100ms;">
+    <div class="spec-list" data-animate-group>
       {%- for block in section.blocks -%}
-        <div class="formula-item" {{ block.shopify_attributes }}>
-          <div class="formula-item__value">{{ block.settings.value }}</div>
-          <div class="formula-item__label">{{ block.settings.label }}</div>
+        <div class="spec-list__row" data-animate {{ block.shopify_attributes }}>
+          <span class="spec-list__value">{{ block.settings.value }}</span>
+          <span class="spec-list__line" aria-hidden="true"></span>
+          <span class="spec-list__label">{{ block.settings.label }}</span>
         </div>
       {%- endfor -%}
     </div>
@@ -33,13 +32,13 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "We focused on the formula."
+      "default": "We didn't build another energy drink. We built a formula."
     },
     {
       "type": "richtext",
       "id": "body",
       "label": "Body copy",
-      "default": "<p>We didn't want to make another energy drink.</p><p>We wanted to build an energy formula around energy + focus, with ingredients selected for a reason and amounts clearly disclosed.</p>"
+      "default": "<p>Every ingredient is selected for a reason and dosed on purpose &mdash; not hidden inside a proprietary blend.</p>"
     },
     {
       "type": "text",
@@ -69,7 +68,7 @@
       "blocks": [
         { "type": "ingredient", "settings": { "value": "200mg", "label": "Caffeine" } },
         { "type": "ingredient", "settings": { "value": "100mg", "label": "L-Theanine" } },
-        { "type": "ingredient", "settings": { "value": "1000mg", "label": "Taurine" } },
+        { "type": "ingredient", "settings": { "value": "1,000mg", "label": "Taurine" } },
         { "type": "ingredient", "settings": { "value": "6", "label": "B Vitamins" } },
         { "type": "ingredient", "settings": { "value": "3", "label": "Electrolytes" } }
       ]
