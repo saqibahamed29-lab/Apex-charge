@@ -50,8 +50,12 @@
           {%- for block in section.blocks -%}
             {%- if block.type == 'stat' -%}
               <div class="hero__stat hero__stat--{{ forloop.index0 }}" data-animate {{ block.shopify_attributes }}>
-                <span class="hero__stat-value">{{ block.settings.value }}</span>
-                <span class="hero__stat-label">{{ block.settings.label }}</span>
+                <span class="hero__stat-dot" aria-hidden="true"></span>
+                <span class="hero__stat-line" aria-hidden="true"></span>
+                <span class="hero__stat-text">
+                  <span class="hero__stat-value">{{ block.settings.value }}</span>
+                  <span class="hero__stat-label">{{ block.settings.label }}</span>
+                </span>
               </div>
             {%- endif -%}
           {%- endfor -%}
