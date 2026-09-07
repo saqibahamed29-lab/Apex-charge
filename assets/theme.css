@@ -432,18 +432,27 @@ html.no-js [data-animate] { opacity: 1; transform: none; }
 }
 
 /* ==========================================================================
-   Why Apex — formula grid
+   Why Apex — spec sheet
    ========================================================================== */
-.why-apex__grid { display: grid; grid-template-columns: 1fr; gap: 44px; }
-@media (min-width: 960px) { .why-apex__grid { grid-template-columns: 0.85fr 1.15fr; gap: 56px; align-items: start; } }
-.why-apex__copy p + p { margin-top: 16px; }
-.why-apex__cta { margin-top: 28px; }
+.why-apex-v2__grid { display: grid; grid-template-columns: 1fr; gap: 56px; }
+@media (min-width: 960px) { .why-apex-v2__grid { grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; } }
+.why-apex-v2__tag { display: inline-block; margin-bottom: 18px; color: var(--color-lime); }
+.why-apex-v2__heading {
+  font-size: clamp(32px, 4vw, 52px); line-height: 0.98; text-transform: none;
+  letter-spacing: -0.01em; margin-bottom: 22px; max-width: 15ch;
+}
+.why-apex-v2__body { font-size: clamp(15px, 1.3vw, 17px); line-height: 1.6; color: var(--color-text-on-dark-muted); max-width: 44ch; }
+.why-apex-v2__body p + p { margin-top: 14px; }
+.why-apex-v2__cta { margin-top: 30px; }
 
-.formula-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--color-line); border: 1px solid var(--color-line); border-radius: var(--radius-md); overflow: hidden; }
-@media (min-width: 640px) { .formula-grid { grid-template-columns: repeat(3, 1fr); } }
-.formula-item { background: var(--color-white); padding: 22px 18px; }
-.formula-item__value { font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 2.6vw, 32px); color: var(--color-lime-ink); line-height: 1; }
-.formula-item__label { margin-top: 8px; font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-text-muted); }
+.spec-list { border-top: 1px solid var(--color-line-on-dark); }
+.spec-list__row {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px;
+  padding-block: 20px; border-bottom: 1px solid var(--color-line-on-dark);
+}
+.spec-list__value { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 3vw, 36px); color: var(--color-lime); line-height: 1; white-space: nowrap; }
+.spec-list__line { height: 1px; background: repeating-linear-gradient(90deg, var(--color-line-on-dark) 0 6px, transparent 6px 12px); }
+.spec-list__label { font-family: var(--font-ui); font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-text-on-dark-muted); white-space: nowrap; }
 
 /* ==========================================================================
    Check 5 things — card grid
@@ -562,14 +571,22 @@ table.compare-table { width: 100%; border-collapse: collapse; min-width: 620px; 
 }
 
 /* ==========================================================================
-   Apex standard — bright strip
+   Apex standard — manifesto list
    ========================================================================== */
-.standard-strip { background: var(--color-lime); color: var(--color-lime-ink); }
-.standard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
-@media (min-width: 720px) { .standard-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
-.standard-card { display: flex; align-items: center; gap: 12px; }
-.standard-card__icon { width: 26px; height: 26px; flex-shrink: 0; }
-.standard-card__title { font-family: var(--font-ui); font-weight: 700; font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.2; }
+.standard-strip-v2 { background: var(--color-lime); color: var(--color-lime-ink); }
+.standard-v2__head { margin-bottom: 8px; }
+.standard-v2__head .mono-tag { color: var(--color-lime-ink); opacity: 0.7; }
+.standard-v2__heading { font-size: clamp(30px, 4vw, 48px); text-transform: uppercase; margin-top: 10px; }
+.standard-v2__list { border-top: 1.5px solid rgba(16,33,10,0.25); }
+.standard-v2__row {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px;
+  padding-block: clamp(16px, 2.4vw, 26px);
+  border-bottom: 1.5px solid rgba(16,33,10,0.25);
+}
+.standard-v2__no { font-family: var(--font-ui); font-weight: 700; font-size: 13px; opacity: 0.6; }
+.standard-v2__title { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(20px, 3vw, 34px); letter-spacing: -0.005em; line-height: 1; }
+.standard-v2__mark { width: 22px; height: 22px; flex-shrink: 0; opacity: 0.55; }
+.standard-v2__mark svg { width: 100%; height: 100%; }
 
 /* ==========================================================================
    UGC video

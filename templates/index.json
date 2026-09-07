@@ -92,10 +92,10 @@
     "apex-standard": {
       "type": "apex-standard",
       "blocks": {
-        "pillar-1": { "type": "pillar", "settings": { "icon": "no-blend", "title": "No Mystery Blends" } },
-        "pillar-2": { "type": "pillar", "settings": { "icon": "star-off", "title": "No Made-Up Reviews" } },
-        "pillar-3": { "type": "pillar", "settings": { "icon": "no-magic", "title": "No Magic Claims" } },
-        "pillar-4": { "type": "pillar", "settings": { "icon": "dose", "title": "No Hidden Doses" } }
+        "pillar-1": { "type": "pillar", "settings": { "title": "No Mystery Blends" } },
+        "pillar-2": { "type": "pillar", "settings": { "title": "No Made-Up Reviews" } },
+        "pillar-3": { "type": "pillar", "settings": { "title": "No Magic Claims" } },
+        "pillar-4": { "type": "pillar", "settings": { "title": "No Hidden Doses" } }
       },
       "block_order": ["pillar-1", "pillar-2", "pillar-3", "pillar-4"]
     },
